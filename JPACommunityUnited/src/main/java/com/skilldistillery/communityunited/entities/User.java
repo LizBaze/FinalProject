@@ -1,5 +1,7 @@
 package com.skilldistillery.communityunited.entities;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 import javax.persistence.Column;
@@ -7,6 +9,10 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToOne;
 
 @Entity
 public class User {
@@ -26,7 +32,15 @@ public class User {
 	private String imgUrl;
 	private Boolean enabled;
 	private String role;
-	
+	@OneToOne
+	@JoinColumn(name = "address_id")
+	private Address address;
+	@ManyToMany
+	@JoinTable(name="member", joinColumns=@JoinColumn(name="user_id"), inverseJoinColumns = @JoinColumn(name="organization_id"))
+	private List<Organization> organizations;
+	@ManyToMany
+	@JoinTable(name="participant", joinColumns=@JoinColumn(name="user_id"), inverseJoinColumns = @JoinColumn(name="event_id"))
+	private List<VolunteerEvent> volunteerEvents;
 	
 	public User() {
 		super();
@@ -172,9 +186,39 @@ public class User {
 	}
 	
 	
+	public void addOrganization(Organization organization) {
+		if (organizations == null) {
+			organizations = new ArrayList<>();
+		}
+		if(!organizations.contains(organization)) {
+			organizations.add(organization);
+			organization.addMember(this);
+		}
+	}
 	
+	public void removeOrganization(Organization organization) {
+		if (organizations != null && organizations.contains(organization)) {
+			organizations.remove(organization);
+			organization.removeMember(this);
+		}
+	}
 	
+	public void addVolunteerEvent(VolunteerEvent volunteerEvent) {
+		if (volunteerEvents == null) {
+			volunteerEvents = new ArrayList<>();
+		}
+		if(!volunteerEvents.contains(volunteerEvent)) {
+			volunteerEvents.add(volunteerEvent);
+			volunteerEvent.addParticipant(this);
+		}
+	}
 	
+	public void removeVolunteerEvent(VolunteerEvent volunteerEvent) {
+		if (volunteerEvents != null && volunteerEvents.contains(volunteerEvent)) {
+			volunteerEvents.remove(volunteerEvent);
+			volunteerEvent.removeParticipant(this);
+		}
+	}
 	
 	
 }
