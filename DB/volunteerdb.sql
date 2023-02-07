@@ -320,7 +320,7 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `volunteerdb`;
-INSERT INTO `user` (`id`, `first_name`, `last_name`, `email`, `password`, `role`, `img_url`, `enabled`, `bio`, `address_id`) VALUES (1, 'John', 'Johnson', 'john@gmail.com', '$2a$10$4SMKDcs9jT18dbFxqtIqDeLEynC7MUrCEUbv1a/bhO.x9an9WGPvm', 'ADMIN', NULL, NULL, NULL, 1);
+INSERT INTO `user` (`id`, `first_name`, `last_name`, `email`, `password`, `role`, `img_url`, `enabled`, `bio`, `address_id`) VALUES (1, 'John', 'Johnson', 'john@email.com', '$2a$10$4SMKDcs9jT18dbFxqtIqDeLEynC7MUrCEUbv1a/bhO.x9an9WGPvm', 'ADMIN', NULL, 1, NULL, 1);
 
 COMMIT;
 

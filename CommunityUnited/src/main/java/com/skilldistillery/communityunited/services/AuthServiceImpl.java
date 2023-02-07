@@ -22,16 +22,16 @@ public class AuthServiceImpl implements AuthService {
 	public User register(User user) {
 		//TODO fix
 		
-//		user.setPassword(encoder.encode(user.getPassword()));
-//		user.setEnabled(true);
-//		user.setRole("standard");
+		user.setPassword(encoder.encode(user.getPassword()));
+		user.setEnabled(true);
+		user.setRole("standard");
 		userRepo.saveAndFlush(user);
 		return user;
 	}
 
 	@Override
-	public User getUserByUsername(String username) {
-		return userRepo.findByUsername(username);
+	public User getUserByEmail(String email) {
+		return userRepo.findByEmail(email);
 	}
 
 }

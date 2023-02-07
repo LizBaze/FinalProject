@@ -45,9 +45,9 @@ public class SecurityConfig {
     @Autowired
     public void configure(AuthenticationManagerBuilder auth) throws Exception {
         // Check if username/password are valid, and user currently allowed to authenticate
-        String userQuery = "SELECT username, password, enabled FROM user WHERE username=?";
+        String userQuery = "SELECT email, password, enabled FROM user WHERE email=?";
         // Check what authorities the user has
-        String authQuery = "SELECT username, role FROM user WHERE username=?";
+        String authQuery = "SELECT email, role FROM user WHERE email=?";
         auth
         .jdbcAuthentication()
         .dataSource(dataSource)
