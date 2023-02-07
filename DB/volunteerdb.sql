@@ -310,7 +310,7 @@ SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `volunteerdb`;
-INSERT INTO `address` (`id`, `street`, `city`, `state`, `zip`) VALUES (1, 'Broadway', 'Hanover', 'Pennsylvania', NULL);
+INSERT INTO `address` (`id`, `street`, `city`, `state`, `zip`) VALUES (1, '1275 First Street', 'Washington', 'D.C.', '20002');
 
 COMMIT;
 
@@ -321,6 +321,134 @@ COMMIT;
 START TRANSACTION;
 USE `volunteerdb`;
 INSERT INTO `user` (`id`, `first_name`, `last_name`, `email`, `password`, `role`, `img_url`, `enabled`, `bio`, `address_id`) VALUES (1, 'John', 'Johnson', 'john@email.com', '$2a$10$4SMKDcs9jT18dbFxqtIqDeLEynC7MUrCEUbv1a/bhO.x9an9WGPvm', 'ADMIN', NULL, 1, NULL, 1);
+
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `organization`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `volunteerdb`;
+INSERT INTO `organization` (`id`, `name`, `logo`, `description`) VALUES (1, 'Peace Corps', NULL, 'The Peace Corps is an independent agency and program of the United States government that trains and deploys volunteers to provide international development assistance');
+
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `volunteer_event`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `volunteerdb`;
+INSERT INTO `volunteer_event` (`id`, `name`, `description`, `created_date`, `start_date`, `end_date`, `organization_id`, `address_id`) VALUES (1, 'Teacher', 'English Teacher', '2022-01-01', '2023-01-01', '2023-04-04', 1, 1);
+
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `participant`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `volunteerdb`;
+INSERT INTO `participant` (`user_id`, `event_id`, `description`, `img_url`, `rating`, `date_joined`) VALUES (1, 1, 'Taught english', NULL, 7, '2023-1-01');
+
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `member`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `volunteerdb`;
+INSERT INTO `member` (`user_id`, `organization_id`, `admin`, `date_joined`) VALUES (1, 1, NULL, NULL);
+
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `group_message`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `volunteerdb`;
+INSERT INTO `group_message` (`id`, `description`, `date_posted`, `user_id`, `event_id`, `in_reply_to`) VALUES (1, 'Hello', '2022-02-02', 1, 1, 1);
+
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `cause`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `volunteerdb`;
+INSERT INTO `cause` (`id`, `name`, `description`, `icon_url`) VALUES (1, 'Advocacy & Human Rights', 'Human rights are about a person-centred way of working – making sure that a person\'s views, needs and wishes are fully considered. Advocacy similarly strives to make sure that people are heard and involved in plans for their care and treatment.', 'https://www.mercyworld.org/45074/1600x1067/55a6a0c18c/human-trafficking-word-cloud-510860690_4500x3000.jpeg?q=60&w=1000&lossless=1&fm=jpg&ixlib=js-1.1.1&s=7d48526e65bb0561d87e94f149e9c807');
+INSERT INTO `cause` (`id`, `name`, `description`, `icon_url`) VALUES (2, 'Animals', 'Animal rights advocates want to distinguish animals from inanimate objects, as they are so often considered by exploitative industries and the law. The animal rights movement strives to make the public aware of the fact that animals are sensitive, emotional, and intelligent beings who deserve dignity and respect.', 'https://i.natgeofe.com/k/c022030e-f1aa-4ab3-ad56-fdcdd4a1d08b/125-animals-tiger.jpg');
+INSERT INTO `cause` (`id`, `name`, `description`, `icon_url`) VALUES (3, 'Arts & Culture', 'Volunteer for culture and art projects and use all your creativity to do something meaningful whilst you travel the world. Whether you play an instrument, are gifted in arts and crafts or have a passion for photography, there are many cultural projects worldwide focusing on these topics.', 'https://sloanreview.mit.edu/wp-content/uploads/2021/04/MAG-Shantz-1290x860-1.jpg');
+INSERT INTO `cause` (`id`, `name`, `description`, `icon_url`) VALUES (4, 'Board Development', 'Board service is a form of volunteerism that can have a huge impact on the organization, but if you think that your sense of personal fulfillment requires a more hands-on volunteer opportunity, you might want to inquire about direct-service volunteering opportunities in the organization instead of board service.', 'https://gerandaprojects.com/wp-content/uploads/2018/10/HeaderBoardDevelopment.jpg');
+INSERT INTO `cause` (`id`, `name`, `description`, `icon_url`) VALUES (5, 'Children & Youth', '\nOur volunteer youth workers play an integral role in helping to facilitate our youth work sessions, including supporting activities such as cooking, media and music workshops, and providing general support and guidance for the young people', 'https://cms-tc.pbskids.org/parents/articles/Tips-for-Volunteering-With-Kids.jpg');
+INSERT INTO `cause` (`id`, `name`, `description`, `icon_url`) VALUES (6, 'Community', NULL, NULL);
+INSERT INTO `cause` (`id`, `name`, `description`, `icon_url`) VALUES (7, 'Computers & Technology', NULL, NULL);
+INSERT INTO `cause` (`id`, `name`, `description`, `icon_url`) VALUES (8, 'Crisis Support', NULL, NULL);
+INSERT INTO `cause` (`id`, `name`, `description`, `icon_url`) VALUES (9, 'Disaster Relief', NULL, NULL);
+INSERT INTO `cause` (`id`, `name`, `description`, `icon_url`) VALUES (10, 'Education & Literacy', NULL, NULL);
+INSERT INTO `cause` (`id`, `name`, `description`, `icon_url`) VALUES (11, 'Emergency & Safety', NULL, NULL);
+INSERT INTO `cause` (`id`, `name`, `description`, `icon_url`) VALUES (12, 'Employment ', NULL, NULL);
+INSERT INTO `cause` (`id`, `name`, `description`, `icon_url`) VALUES (13, 'Environment', NULL, NULL);
+INSERT INTO `cause` (`id`, `name`, `description`, `icon_url`) VALUES (14, 'Faith-Based', NULL, NULL);
+INSERT INTO `cause` (`id`, `name`, `description`, `icon_url`) VALUES (15, 'Health & Medicine ', NULL, NULL);
+INSERT INTO `cause` (`id`, `name`, `description`, `icon_url`) VALUES (16, 'Homeless & Housing', NULL, NULL);
+INSERT INTO `cause` (`id`, `name`, `description`, `icon_url`) VALUES (17, 'Hunger', NULL, NULL);
+INSERT INTO `cause` (`id`, `name`, `description`, `icon_url`) VALUES (18, 'Immigrants & Refugees', NULL, NULL);
+INSERT INTO `cause` (`id`, `name`, `description`, `icon_url`) VALUES (19, 'International', NULL, NULL);
+INSERT INTO `cause` (`id`, `name`, `description`, `icon_url`) VALUES (20, 'Justice & Legal', NULL, NULL);
+INSERT INTO `cause` (`id`, `name`, `description`, `icon_url`) VALUES (21, 'LGBTQ+', NULL, NULL);
+INSERT INTO `cause` (`id`, `name`, `description`, `icon_url`) VALUES (22, 'Media & Broadcasting', NULL, NULL);
+INSERT INTO `cause` (`id`, `name`, `description`, `icon_url`) VALUES (23, 'People With Disabilities ', NULL, NULL);
+INSERT INTO `cause` (`id`, `name`, `description`, `icon_url`) VALUES (24, 'Politics', NULL, NULL);
+INSERT INTO `cause` (`id`, `name`, `description`, `icon_url`) VALUES (25, 'Race & Ethnicity ', NULL, NULL);
+INSERT INTO `cause` (`id`, `name`, `description`, `icon_url`) VALUES (26, 'Seniors', NULL, NULL);
+INSERT INTO `cause` (`id`, `name`, `description`, `icon_url`) VALUES (27, 'Sports & Recreation ', NULL, NULL);
+INSERT INTO `cause` (`id`, `name`, `description`, `icon_url`) VALUES (28, 'Veterans & Military Families', NULL, NULL);
+INSERT INTO `cause` (`id`, `name`, `description`, `icon_url`) VALUES (29, 'Women', NULL, NULL);
+
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `event_img`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `volunteerdb`;
+INSERT INTO `event_img` (`id`, `img_url`, `caption`, `volunteer_event_id`) VALUES (1, NULL, 'teaching english', 1);
+
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `user_has_cause`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `volunteerdb`;
+INSERT INTO `user_has_cause` (`user_id`, `cause_id`) VALUES (1, 6);
+
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `organization_has_cause`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `volunteerdb`;
+INSERT INTO `organization_has_cause` (`organization_id`, `cause_id`) VALUES (1, 6);
+
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `volunteer_event_has_cause`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `volunteerdb`;
+INSERT INTO `volunteer_event_has_cause` (`volunteer_event_id`, `cause_id`) VALUES (1, 6);
 
 COMMIT;
 
