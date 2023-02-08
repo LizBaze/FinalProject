@@ -67,7 +67,8 @@ CREATE TABLE IF NOT EXISTS `organization` (
   `name` VARCHAR(45) NULL,
   `logo` VARCHAR(2000) NULL,
   `description` VARCHAR(2000) NULL,
-  PRIMARY KEY (`id`))
+  PRIMARY KEY (`id`),
+  UNIQUE INDEX `name_UNIQUE` (`name` ASC))
 ENGINE = InnoDB;
 
 
