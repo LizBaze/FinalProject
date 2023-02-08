@@ -55,6 +55,30 @@ export class AuthService {
    );
  }
 
+ updateUser(user: User): Observable<User>{
+  return this.http.put<User>(this.url + 'user/' + user.id, user).pipe(
+    catchError((err: any) => {
+      console.log(err);
+      return throwError(
+        () => new Error('AuthService.register(): error updating user.')
+      );
+    })
+  );
+ }
+
+ disableAccount(user: User): Observable<void>{
+  return this.http.delete<void>(this.url + 'user/' + user.id).pipe(
+    catchError((err: any) => {
+      console.log(err);
+      return throwError(
+        () => new Error('AuthService.register(): error deleting user.')
+      );
+    })
+  );
+
+
+}
+
  logout(): void {
    localStorage.removeItem('credentials');
  }

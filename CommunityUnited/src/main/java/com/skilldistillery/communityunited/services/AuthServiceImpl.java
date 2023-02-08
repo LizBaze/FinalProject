@@ -49,4 +49,18 @@ public class AuthServiceImpl implements AuthService {
 		return updatedUser;
 	}
 
+	@Override
+	public boolean disabledAccount(int id) {
+		boolean accountIsDisabled = false;
+		Optional<User> userOpt = userRepo.findById(id);
+		User account = null;
+		if(userOpt.isPresent()) {
+			account = userOpt.get();
+			account.setEnabled(false);
+			userRepo.saveAndFlush(account);
+			accountIsDisabled = true;
+		}
+		return accountIsDisabled;
+	}
+
 }

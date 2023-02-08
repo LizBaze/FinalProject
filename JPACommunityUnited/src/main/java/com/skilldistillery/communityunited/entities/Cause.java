@@ -12,6 +12,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class Cause {
 
@@ -22,9 +24,11 @@ public class Cause {
 	private String description;
 	private String icon_url;
 	@ManyToMany
+	@JsonIgnore
 	@JoinTable(name="organization_has_cause", joinColumns = @JoinColumn(name="cause_id"), inverseJoinColumns = @JoinColumn(name="organization_id"))
 	private List<Organization> organizations;
 	@ManyToMany
+	@JsonIgnore
 	@JoinTable(name="volunteer_event_has_cause", joinColumns = @JoinColumn(name="cause_id"), inverseJoinColumns = @JoinColumn(name="volunteer_event_id"))
 	private List<VolunteerEvent> volunteerEvents;
 	

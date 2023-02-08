@@ -16,6 +16,12 @@ public class MemberId implements Serializable {
 	
 	@Column(name="organization_id")
 	private int organizationId;
+	
+
+
+	public MemberId() {
+		super();
+	}
 
 	public MemberId(int userId, int organizationId) {
 		super();

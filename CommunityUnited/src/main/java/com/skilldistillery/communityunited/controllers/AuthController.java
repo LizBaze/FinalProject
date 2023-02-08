@@ -6,6 +6,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -45,9 +46,20 @@ public class AuthController {
 	@PutMapping("user/{id}")
 	public User update(Principal principal, @RequestBody User user, @PathVariable Integer id, HttpServletResponse res) {
 		user = authService.update(user, id);
-		if (user == null) {
+		if (user != null) {
+			res.setStatus(200);
 			
 		}
-		return null;
+		return user;
+	}
+	
+	@DeleteMapping("user/{id}")
+	public void disableAccount(@PathVariable Integer id, HttpServletResponse res) {
+		if(authService.disabledAccount(id)) {
+			res.setStatus(204);
+		}
+		else {
+			res.setStatus(404);
+		}
 	}
 }

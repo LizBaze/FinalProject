@@ -14,6 +14,8 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToOne;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class User {
 
@@ -36,9 +38,11 @@ public class User {
 	@JoinColumn(name = "address_id")
 	private Address address;
 	@ManyToMany
+	@JsonIgnore
 	@JoinTable(name="member", joinColumns=@JoinColumn(name="user_id"), inverseJoinColumns = @JoinColumn(name="organization_id"))
 	private List<Organization> organizations;
 	@ManyToMany
+	@JsonIgnore
 	@JoinTable(name="participant", joinColumns=@JoinColumn(name="user_id"), inverseJoinColumns = @JoinColumn(name="event_id"))
 	private List<VolunteerEvent> volunteerEvents;
 	
