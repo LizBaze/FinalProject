@@ -6,5 +6,6 @@ public interface AuthService {
 	
 	public User register(User user);
 	public User getUserByEmail(String email);
+	public User update(User user, int id);
 
 }

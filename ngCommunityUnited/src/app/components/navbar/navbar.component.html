@@ -34,7 +34,7 @@
 	<li ngbDropdown class="nav-item">
 		<a href (click)="false" class="nav-link" ngbDropdownToggle>More</a>
 		<div ngbDropdownMenu>
-			<button ngbDropdownItem>Action</button>
+			<button ngbDropdownItem [routerLink]="['/account']">Account</button>
 			<button ngbDropdownItem>Another action</button>
 			<button ngbDropdownItem>Something else here</button>
 			<div class="dropdown-divider"></div>
