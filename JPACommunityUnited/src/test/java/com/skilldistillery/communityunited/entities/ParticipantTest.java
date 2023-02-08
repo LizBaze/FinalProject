@@ -1,8 +1,6 @@
 package com.skilldistillery.communityunited.entities;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -14,11 +12,10 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-class UserTest {
-
+class ParticipantTest {
 	private static EntityManagerFactory emf;
 	private EntityManager em;
-	private User user;
+	private Participant participant;
 	
 	
 	@BeforeAll
@@ -34,32 +31,26 @@ class UserTest {
 	@BeforeEach
 	void setUp() throws Exception {
 		em = emf.createEntityManager();
-		user = em.find(User.class, 1);
+		participant = em.find(Participant.class, new ParticipantId(1, 1));
 	}
 
 	@AfterEach
 	void tearDown() throws Exception {
 		em.close();
-		user = null;
+		participant = null;
 	}
 	
 
 	@Test
-	void test_User_Entity() {
-		assertNotNull(user);
-		assertEquals("John", user.getFirstName());
+	void test_Participant_Entity() {
+		assertNotNull(participant);
+		assertEquals("John",participant.getUser().getFirstName());
 	}
 	@Test
-	void test_User_Address_Mapping() {
-		assertNotNull(user.getAddress());
-		assertEquals("Washington", user.getAddress().getCity());
+	void test_VolunteerEvent_Mapping() {
+		assertNotNull(participant);
+		assertEquals("Teacher",participant.getVolunteerEvent().getName());
 	}
-	@Test
-	void test_User_Organizations_Events_Mapping() {
-		assertNotNull(user.getOrganizations());
-		assertNotNull(user.getVolunteerEvents());
-		assertTrue(user.getOrganizations().size() > 0);
-		assertTrue(user.getVolunteerEvents().size() > 0);
-	}
-
 }
+
+

@@ -14,6 +14,8 @@ import javax.persistence.Table;
 
 import org.hibernate.annotations.CreationTimestamp;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name="group_message")
 public class GroupMessage {
@@ -101,7 +103,7 @@ public class GroupMessage {
 	@Override
 	public String toString() {
 		return "GroupMessage [id=" + id + ", description=" + description + ", datePosted=" + datePosted + ", user="
-				+ user + ", volunteerEvent=" + volunteerEvent + ", inReplyTo=" + inReplyTo + "]";
+				+ user + ", volunteerEvent=" + volunteerEvent + ", inReplyTo=" + inReplyTo.id + "]";
 	}
 
 	@Override

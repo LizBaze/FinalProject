@@ -1,12 +1,13 @@
 package com.skilldistillery.communityunited.entities;
 
+import java.io.Serializable;
 import java.util.Objects;
 
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
 
 @Embeddable
-public class MemberId {
+public class MemberId implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	

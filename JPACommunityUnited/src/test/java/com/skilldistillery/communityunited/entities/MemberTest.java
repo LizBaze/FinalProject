@@ -1,8 +1,6 @@
 package com.skilldistillery.communityunited.entities;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -14,13 +12,12 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-class UserTest {
+class MemberTest {
 
 	private static EntityManagerFactory emf;
 	private EntityManager em;
-	private User user;
-	
-	
+	private Member member;
+
 	@BeforeAll
 	static void setUpBeforeClass() throws Exception {
 		emf = Persistence.createEntityManagerFactory("JPACommunityUnited");
@@ -34,32 +31,29 @@ class UserTest {
 	@BeforeEach
 	void setUp() throws Exception {
 		em = emf.createEntityManager();
-		user = em.find(User.class, 1);
+		member = em.find(Member.class, new MemberId(1, 1));
 	}
 
 	@AfterEach
 	void tearDown() throws Exception {
 		em.close();
-		user = null;
-	}
-	
-
-	@Test
-	void test_User_Entity() {
-		assertNotNull(user);
-		assertEquals("John", user.getFirstName());
-	}
-	@Test
-	void test_User_Address_Mapping() {
-		assertNotNull(user.getAddress());
-		assertEquals("Washington", user.getAddress().getCity());
-	}
-	@Test
-	void test_User_Organizations_Events_Mapping() {
-		assertNotNull(user.getOrganizations());
-		assertNotNull(user.getVolunteerEvents());
-		assertTrue(user.getOrganizations().size() > 0);
-		assertTrue(user.getVolunteerEvents().size() > 0);
+		member = null;
 	}
 
+	@Test
+	void test_Member_Entity() {
+		assertNotNull(member);
+		assertEquals(1, member.getOrganization().getId());
+	}
+
+	@Test
+	void test_User_Mapping() {
+		assertNotNull(member);
+		assertEquals("John", member.getUser().getFirstName());
+	}
+	@Test
+	void test_Organization_Mapping() {
+		assertNotNull(member);
+		assertEquals("Peace Corps", member.getOrganization().getName());
+	}
 }

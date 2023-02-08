@@ -59,6 +59,54 @@ public class User {
 
 
 
+	public Address getAddress() {
+		return address;
+	}
+
+
+
+
+
+	public void setAddress(Address address) {
+		this.address = address;
+	}
+
+
+
+
+
+	public List<Organization> getOrganizations() {
+		return organizations;
+	}
+
+
+
+
+
+	public void setOrganizations(List<Organization> organizations) {
+		this.organizations = organizations;
+	}
+
+
+
+
+
+	public List<VolunteerEvent> getVolunteerEvents() {
+		return volunteerEvents;
+	}
+
+
+
+
+
+	public void setVolunteerEvents(List<VolunteerEvent> volunteerEvents) {
+		this.volunteerEvents = volunteerEvents;
+	}
+
+
+
+
+
 	public void setPassword(String password) {
 		this.password = password;
 	}
