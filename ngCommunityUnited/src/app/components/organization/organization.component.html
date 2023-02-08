@@ -1,0 +1,23 @@
+
+
+<form *ngIf="newOrganization">
+  <div  class="row">
+    <label class="col form-label" for="name">Name</label>
+    <input class="form-control" type="text" name="name" placeholder="name" [(ngModel)]="newOrganization.name" required>
+  </div>
+  <div class="row">
+    <label class="col form-label" for="lastName">Logo</label>
+    <input class="form-control" type="text" name="logo" placeholder="logo" [(ngModel)]="newOrganization.logo" required>
+  </div>
+
+  <div class="row">
+  <label class="col form-label" for="email">Description</label>
+  <input class="form-control" type="text" name="description" placeholder="description" [(ngModel)]="newOrganization.description" required>
+</div>
+
+
+<br>
+<div>
+  <button class="btn btn-primary"(click)="createOrg(newOrganization)">Create New Organization</button>
+</div>
+</form>
