@@ -45,7 +45,7 @@ CREATE TABLE IF NOT EXISTS `user` (
   `img_url` VARCHAR(2000) NULL,
   `enabled` TINYINT NULL,
   `bio` TEXT NULL,
-  `address_id` INT NOT NULL,
+  `address_id` INT NULL,
   PRIMARY KEY (`id`),
   INDEX `fk_user_address1_idx` (`address_id` ASC),
   UNIQUE INDEX `email_UNIQUE` (`email` ASC),
@@ -370,7 +370,7 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `volunteerdb`;
-INSERT INTO `group_message` (`id`, `description`, `date_posted`, `user_id`, `event_id`, `in_reply_to`) VALUES (1, 'Hello', '2022-02-02', 1, 1, 1);
+INSERT INTO `group_message` (`id`, `description`, `date_posted`, `user_id`, `event_id`, `in_reply_to`) VALUES (1, 'Very excited for the event', '2022-02-02', 1, 1, 1);
 
 COMMIT;
 

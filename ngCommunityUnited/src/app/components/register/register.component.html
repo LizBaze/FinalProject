@@ -1,0 +1,19 @@
+<p>register works!</p>
+
+
+<form>
+  <div class="row">
+  <label class="col form-label" for="email">Email</label>
+  <input class="form-control" type="text" name="email" placeholder="email" [(ngModel)]="newUser.email">
+</div>
+<div class="row">
+  <label class="col form-label" for="password">Password</label>
+  <input class="form-control"type="password" name="password" placeholder="password" [(ngModel)]="newUser.password">
+
+</div>
+
+<br>
+<div>
+  <button class="btn btn-primary"(click)="register(newUser)">Register Account</button>
+</div>
+</form>

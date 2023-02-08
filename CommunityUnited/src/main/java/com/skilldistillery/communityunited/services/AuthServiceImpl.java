@@ -20,8 +20,6 @@ public class AuthServiceImpl implements AuthService {
 	
 	@Override
 	public User register(User user) {
-		//TODO fix
-		
 		user.setPassword(encoder.encode(user.getPassword()));
 		user.setEnabled(true);
 		user.setRole("standard");
