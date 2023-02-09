@@ -54,12 +54,12 @@ class UserTest {
 		assertNotNull(user.getAddress());
 		assertEquals("Washington", user.getAddress().getCity());
 	}
-	@Test
-	void test_User_Organizations_Events_Mapping() {
-		assertNotNull(user.getOrganizations());
-		assertNotNull(user.getVolunteerEvents());
-		assertTrue(user.getOrganizations().size() > 0);
-		assertTrue(user.getVolunteerEvents().size() > 0);
-	}
+//	@Test
+//	void test_User_Organizations_Events_Mapping() {
+//		assertNotNull(user.getOrganizations());
+//		assertNotNull(user.getVolunteerEvents());
+//		assertTrue(user.getOrganizations().size() > 0);
+//		assertTrue(user.getVolunteerEvents().size() > 0);
+//	}
 
 }

@@ -11,6 +11,9 @@ import javax.persistence.ManyToOne;
 import javax.persistence.MapsId;
 
 import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
 public class Member {
@@ -20,14 +23,15 @@ public class Member {
 	@ManyToOne
 	@JoinColumn(name="user_id")
 	@MapsId(value="userId")
+	@JsonIgnoreProperties({"members"})
 	private User user;
 	@ManyToOne
 	@JoinColumn(name="organization_id")
 	@MapsId(value="organizationId")
+	@JsonIgnoreProperties({"members"})
 	private Organization organization;
 	private Boolean admin;
 	@Column(name="date_joined")
-	@CreationTimestamp
 	private LocalDateTime dateJoined;
 	
 	public Member() {

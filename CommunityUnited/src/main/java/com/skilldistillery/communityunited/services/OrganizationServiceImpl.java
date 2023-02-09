@@ -1,13 +1,12 @@
 package com.skilldistillery.communityunited.services;
 
 import java.time.LocalDateTime;
-import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.skilldistillery.communityunited.entities.Member;
+import com.skilldistillery.communityunited.entities.MemberId;
 import com.skilldistillery.communityunited.entities.Organization;
 import com.skilldistillery.communityunited.entities.User;
 import com.skilldistillery.communityunited.repositories.MemberRepository;
@@ -30,9 +29,14 @@ public class OrganizationServiceImpl implements OrganizationService {
 		Organization organ = orgRepo.findByName(org.getName());
 		User user = userRepo.findByEmail(email);
 		if (organ == null && user != null) {
-			org.addMember(user);
+//			org.addMember(user);
 			orgRepo.saveAndFlush(org);
-			Member member = memberRepo.findByUser_idAndOrganization_id(user.getId(), org.getId());
+//			Member member = memberRepo.findByUser_idAndOrganization_id(user.getId(), org.getId());
+			Member member = new Member();
+			MemberId memberId = new MemberId(user.getId(), org.getId());
+			member.setId(memberId);
+			member.setOrganization(org);
+			member.setUser(user);
 			member.setAdmin(true);
 			member.setDateJoined(LocalDateTime.now());
 			memberRepo.saveAndFlush(member);
@@ -41,35 +45,17 @@ public class OrganizationServiceImpl implements OrganizationService {
 		}
 		return null;
 	}
+	
+	
+	
 
 	@Override
-	public Organization updated(Organization org, int id, String email) {
-		User user = userRepo.findByEmail(email);
-
-		Optional<Organization> orgOpt = orgRepo.findById(id);
-
-		Organization updatedOrg = null;
-
-		if (orgOpt.isPresent() && user != null) {
-			updatedOrg = orgOpt.get();
-			Member member = memberRepo.findByUser_idAndOrganization_id(user.getId(), updatedOrg.getId());
-			if (member != null && member.getAdmin()) {
-
-				updatedOrg.setDescription(org.getDescription());
-				updatedOrg.setLogo(org.getLogo());
-				orgRepo.saveAndFlush(updatedOrg);
-			} else {
-				updatedOrg = null;
-			}
+	public boolean checkAdmin(int orgId, int userId) {
+		Member member = memberRepo.findByUser_idAndOrganization_id(userId, orgId);
+		if (member != null && member.getAdmin()) {
+			return true;
 		}
-
-		return updatedOrg;
-	}
-
-	@Override
-	public List<Organization> findAll() {
-		
-		return orgRepo.findAll();
+		return false;
 	}
 
 }

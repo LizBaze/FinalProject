@@ -12,9 +12,11 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
 public class User {
@@ -37,10 +39,14 @@ public class User {
 	@OneToOne
 	@JoinColumn(name = "address_id")
 	private Address address;
-	@ManyToMany
-	@JsonIgnore
-	@JoinTable(name="member", joinColumns=@JoinColumn(name="user_id"), inverseJoinColumns = @JoinColumn(name="organization_id"))
-	private List<Organization> organizations;
+//	@ManyToMany
+//	@JoinTable(name="member", joinColumns=@JoinColumn(name="user_id"), inverseJoinColumns = @JoinColumn(name="organization_id"))
+//	private List<Organization> organizations;
+	
+	@OneToMany(mappedBy="user")
+	@JsonIgnoreProperties(value= {"user", "organization"})
+	private List<Member> members;
+	
 	@ManyToMany
 	@JsonIgnore
 	@JoinTable(name="participant", joinColumns=@JoinColumn(name="user_id"), inverseJoinColumns = @JoinColumn(name="event_id"))
@@ -79,17 +85,17 @@ public class User {
 
 
 
-	public List<Organization> getOrganizations() {
-		return organizations;
-	}
-
-
-
-
-
-	public void setOrganizations(List<Organization> organizations) {
-		this.organizations = organizations;
-	}
+//	public List<Organization> getOrganizations() {
+//		return organizations;
+//	}
+//
+//
+//
+//
+//
+//	public void setOrganizations(List<Organization> organizations) {
+//		this.organizations = organizations;
+//	}
 
 
 
@@ -191,6 +197,22 @@ public class User {
 	}
 
 
+	public List<Member> getMembers() {
+		return members;
+	}
+
+
+
+
+
+	public void setMembers(List<Member> members) {
+		this.members = members;
+	}
+
+
+
+
+
 	public Boolean getEnabled() {
 		return enabled;
 	}
@@ -238,20 +260,37 @@ public class User {
 	}
 	
 	
-	public void addOrganization(Organization organization) {
-		if (organizations == null) {
-			organizations = new ArrayList<>();
+//	public void addOrganization(Organization organization) {
+//		if (organizations == null) {
+//			organizations = new ArrayList<>();
+//		}
+//		if(!organizations.contains(organization)) {
+//			organizations.add(organization);
+//			organization.addMember(this);
+//		}
+//	}
+//	
+//	public void removeOrganization(Organization organization) {
+//		if (organizations != null && organizations.contains(organization)) {
+//			organizations.remove(organization);
+//			organization.removeMember(this);
+//		}
+//	}
+	
+	public void addMember(Member member) {
+		if (members == null) {
+			members = new ArrayList<>();
 		}
-		if(!organizations.contains(organization)) {
-			organizations.add(organization);
-			organization.addMember(this);
+		if(!members.contains(member)) {
+			members.add(member);
+			member.setUser(this);
 		}
 	}
 	
-	public void removeOrganization(Organization organization) {
-		if (organizations != null && organizations.contains(organization)) {
-			organizations.remove(organization);
-			organization.removeMember(this);
+	public void removeMember(Member member) {
+		if (members != null && members.contains(member)) {
+			members.remove(member);
+			member.setUser(null);
 		}
 	}
 	

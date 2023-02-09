@@ -13,8 +13,6 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 export class OrganizationService {
   private url = environment.baseUrl;
 
-
-
   constructor(
     private auth: AuthService,
     route: Router,
@@ -32,19 +30,14 @@ export class OrganizationService {
   }
 
   index(): Observable<Organization[]> {
-    return this.http
-      .get<Organization[]>(this.url + 'api/organizations')
-      .pipe(
-        catchError((err: any) => {
-          console.log(err);
-          return throwError(
-            () =>
-              new Error(
-                'OrgService.index() error retrieving Org List ' + err
-              )
-          );
-        })
-      );
+    return this.http.get<Organization[]>(this.url + 'api/organizations').pipe(
+      catchError((err: any) => {
+        console.log(err);
+        return throwError(
+          () => new Error('OrgService.index() error retrieving Org List ' + err)
+        );
+      })
+    );
   }
 
   createOrg(org: Organization) {
@@ -82,6 +75,25 @@ export class OrganizationService {
     };
     return this.http
       .put<Organization>(this.url + 'api/organizations/' + id, org, httpOptions)
+      .pipe(
+        catchError((err: any) => {
+          console.log(err);
+          return throwError(
+            () =>
+              new Error(
+                'OrganizationService.createOrg(): error creating organization user.'
+              )
+          );
+        })
+      );
+  }
+
+  checkAdmin(orgId: number, userId: number) {
+    return this.http
+      .get<boolean>(
+        this.url + 'api/organizations/' + orgId + '/users/' + userId,
+        this.getHttpOptions()
+      )
       .pipe(
         catchError((err: any) => {
           console.log(err);
