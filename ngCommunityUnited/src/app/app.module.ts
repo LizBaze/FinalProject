@@ -13,6 +13,7 @@ import { LogoutComponent } from './components/logout/logout.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { AccountComponent } from './components/account/account.component';
 import { OrganizationComponent } from './components/organization/organization.component';
+import { VolunteereventComponent } from './components/volunteerevent/volunteerevent.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { OrganizationComponent } from './components/organization/organization.co
     LogoutComponent,
     NavbarComponent,
     AccountComponent,
-    OrganizationComponent
+    OrganizationComponent,
+    VolunteereventComponent
   ],
   imports: [
     BrowserModule,
