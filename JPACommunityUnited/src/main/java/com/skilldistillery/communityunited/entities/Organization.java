@@ -11,6 +11,8 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 @Entity
 public class Organization {
 
@@ -22,15 +24,16 @@ public class Organization {
 	private String description;
 	@ManyToMany(mappedBy="organizations")
 	private List<Cause> causes;
-	@ManyToMany(mappedBy="organizations")
-	private List<User> members;
+	@OneToMany(mappedBy="organization")
+//	@JsonIgnoreProperties({"organization", "user"})
+	private List<Member> members;
 	
 	
 	public Organization() {
 		super();
 	}
 	
-	public Organization(int id, String name, String logo, String description, List<Cause> causes, List<User> members) {
+	public Organization(int id, String name, String logo, String description, List<Cause> causes, List<Member> members) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -80,11 +83,11 @@ public class Organization {
 		this.causes = causes;
 	}
 
-	public List<User> getMembers() {
+	public List<Member> getMembers() {
 		return members;
 	}
 
-	public void setMembers(List<User> members) {
+	public void setMembers(List<Member> members) {
 		this.members = members;
 	}
 
@@ -127,20 +130,20 @@ public class Organization {
 		}
 	}
 	
-	public void addMember(User member) {
+	public void addMember(Member member) {
 		if (members == null) {
 			members = new ArrayList<>();
 		}
 		if(!members.contains(member)) {
 			members.add(member);
-			member.addOrganization(this);
+			member.setOrganization(this);
 		}
 	}
 	
-	public void removeMember(User member) {
+	public void removeMember(Member member) {
 		if (members != null && members.contains(member)) {
 			members.remove(member);
-			member.removeOrganization(this);
+			member.setOrganization(null);
 		}
 	}
 	

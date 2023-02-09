@@ -1,4 +1,4 @@
-<div *ngIf="checkLogIn()" >
+<div *ngIf="checkLogIn()">
 <button (click)="newOrg()">Create New Org</button>
 </div>
 <div *ngIf="!selectedOrganization && !editOrganization && !newOrganization">
@@ -12,7 +12,7 @@
 <div *ngIf="selectedOrganization">
   <h1>{{ selectedOrganization.name }}</h1>
 
-  <button (click)="editOrg(selectedOrganization)">Edit</button>
+  <button *ngIf="checkAdmin()" (click)="editOrg(selectedOrganization)">Edit</button>
   <button (click)="selectedOrganization = null">Back</button>
 </div>
 
