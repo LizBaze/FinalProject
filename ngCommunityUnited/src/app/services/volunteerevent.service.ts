@@ -25,9 +25,17 @@ export class VolunteereventService {
     );
   }
 
-  // getVolunteerevent(id) {
-  //   return this.http.get(this.url + '/volunteerevents/' + id);
-  // }
+
+  show(id: number): Observable<Volunteerevent> {
+    return this.http.get<Volunteerevent>(this.url+ 'api/volunteerevents/'  +id,).pipe(
+      catchError((err: any) => {
+        console.log(err);
+        return throwError(
+          () => new Error('VolunteereventService.index(): error retrieving event: ' + err)
+        );
+      })
+    );
+  }
 
   // createVolunteerevent(volunteerevent) {
   //   return this.http.post(this.url + '/volunteerevents', volunteerevent);

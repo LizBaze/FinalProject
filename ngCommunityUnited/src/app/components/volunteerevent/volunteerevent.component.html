@@ -1,5 +1,17 @@
+<div *ngIf="!selected">
 <ul *ngFor="let event of events">
-  <li>{{event.name}}</li>
+  <li (click)="displayEvent(event)">{{event.name}}</li>
 </ul>
+</div>
 
-<h1>nothing</h1>
+<div *ngIf="selected" >
+<h1>{{selected.id}}</h1>
+<h1>{{selected.name}}</h1>
+<h1>{{selected.description}}</h1>
+<h1>{{selected.createdDate}}</h1>
+<h1>{{selected.startDate}}</h1>
+<h1>{{selected.endDate}}</h1>
+<button class="btn btn-primary" (click)="displayAllEvents()">Display Events</button>
+</div>
+
+
