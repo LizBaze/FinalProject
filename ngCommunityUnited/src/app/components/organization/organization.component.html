@@ -1,23 +1,95 @@
+<div *ngIf="checkLogIn()" >
+<button (click)="newOrg()">Create New Org</button>
+</div>
+<div *ngIf="!selectedOrganization && !editOrganization && !newOrganization">
+  <ul>
+    <li *ngFor="let org of allOrgs" (click)="selectedOrganization = org">
+      {{ org.name }}
+    </li>
+  </ul>
+</div>
 
+<div *ngIf="selectedOrganization">
+  <h1>{{ selectedOrganization.name }}</h1>
+
+  <button (click)="editOrg(selectedOrganization)">Edit</button>
+  <button (click)="selectedOrganization = null">Back</button>
+</div>
+
+<form *ngIf="editOrganization">
+  <div class="row">
+    <label class="col form-label" for="lastName">Logo</label>
+    <input
+      class="form-control"
+      type="text"
+      name="logo"
+      placeholder="logo"
+      [(ngModel)]="editOrganization.logo"
+      required
+    />
+  </div>
+
+  <div class="row">
+    <label class="col form-label" for="email">Description</label>
+    <input
+      class="form-control"
+      type="text"
+      name="description"
+      placeholder="description"
+      [(ngModel)]="editOrganization.description"
+      required
+    />
+    <button
+      class="btn btn-primary"
+      (click)="updateOrg(editOrganization, editOrganization.id)"
+    >
+      Submit
+    </button>
+    <button (click)="editOrganization = null">Cancel</button>
+  </div>
+</form>
 
 <form *ngIf="newOrganization">
-  <div  class="row">
+  <div class="row">
     <label class="col form-label" for="name">Name</label>
-    <input class="form-control" type="text" name="name" placeholder="name" [(ngModel)]="newOrganization.name" required>
+    <input
+      class="form-control"
+      type="text"
+      name="name"
+      placeholder="name"
+      [(ngModel)]="newOrganization.name"
+      required
+    />
   </div>
   <div class="row">
     <label class="col form-label" for="lastName">Logo</label>
-    <input class="form-control" type="text" name="logo" placeholder="logo" [(ngModel)]="newOrganization.logo" required>
+    <input
+      class="form-control"
+      type="text"
+      name="logo"
+      placeholder="logo"
+      [(ngModel)]="newOrganization.logo"
+      required
+    />
   </div>
 
   <div class="row">
-  <label class="col form-label" for="email">Description</label>
-  <input class="form-control" type="text" name="description" placeholder="description" [(ngModel)]="newOrganization.description" required>
-</div>
+    <label class="col form-label" for="email">Description</label>
+    <input
+      class="form-control"
+      type="text"
+      name="description"
+      placeholder="description"
+      [(ngModel)]="newOrganization.description"
+      required
+    />
+  </div>
 
-
-<br>
-<div>
-  <button class="btn btn-primary"(click)="createOrg(newOrganization)">Create New Organization</button>
-</div>
+  <br />
+  <div>
+    <button class="btn btn-primary" (click)="createOrg(newOrganization)">
+      Create New Organization
+    </button>
+    <button (click)="newOrganization = null">Cancel</button>
+  </div>
 </form>

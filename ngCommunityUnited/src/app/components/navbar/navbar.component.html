@@ -21,6 +21,14 @@
 			</p>
 		</ng-template>
 	</li>
+	<li [ngbNavItem]="3">
+		<a ngbNavLink [routerLink]="['/organization']">Organizations</a>
+		<ng-template ngbNavContent>
+			<p>
+
+			</p>
+		</ng-template>
+	</li>
 
   <li *ngIf="!loggedIn()" [ngbNavItem]="2">
 		<a ngbNavLink [routerLink]="['/login']"><b>Login</b></a>
