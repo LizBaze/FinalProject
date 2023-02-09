@@ -9,7 +9,7 @@ public interface OrganizationService {
 	List<Organization> findAll();
 	Organization create(Organization org, String email);
 	Organization updated(Organization org, int id, String email);
-	
+	boolean checkAdmin(int orgId, int userId);
 	
 
 }

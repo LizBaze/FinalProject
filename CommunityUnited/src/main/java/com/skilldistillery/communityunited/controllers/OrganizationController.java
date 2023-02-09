@@ -27,6 +27,7 @@ public class OrganizationController {
 	@Autowired
 	private OrganizationService orgService;
 	
+	
 	@GetMapping("organizations") 
 		public List<Organization> index(Principal principal, HttpServletResponse res) {
 			return orgService.findAll();
@@ -59,6 +60,13 @@ public class OrganizationController {
 		}
 		
 		return org;
+	}
+	
+	@GetMapping("organizations/{id}/users/{userId}")
+	public boolean checkAdmin(@PathVariable int id, @PathVariable int userId, HttpServletResponse res, Principal principal) {
+		boolean admin = orgService.checkAdmin(id, userId);
+		
+		return admin;
 	}
 
 }
