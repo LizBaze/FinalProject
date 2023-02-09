@@ -48,5 +48,23 @@ public class VolunteerEventServiceImpl implements VolunteerEventService {
 		}
 		return event;
 	}
+	
+	@Override
+	public VolunteerEvent update(VolunteerEvent event, int id) {
+		Optional<VolunteerEvent> updateOpt = volunteerEventRepo.findById(id);
+		VolunteerEvent update = new VolunteerEvent();
+		if (updateOpt.isPresent()) {
+			update = updateOpt.get();
+			update.setName(event.getName());
+			update.setDescription(event.getDescription());
+			update.setCreatedDate(event.getCreatedDate());
+			update.setStartDate(event.getStartDate());
+			update.setEndDate(event.getEndDate());
+	
+		}
+		return volunteerEventRepo.saveAndFlush(update);
+		
+	
+	}
 
 }

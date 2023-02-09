@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -50,5 +51,22 @@ public class VolunteerEventController {
 		  }
 		return event;
 		}
+	
+	@PutMapping("volunteerevents/{id}")
+	public VolunteerEvent updated(HttpServletRequest req, HttpServletResponse res, @RequestBody VolunteerEvent event, @PathVariable int id) {
+		try {
+			event = eventService.update(event, id);
+			if(event == null) {
+				res.setStatus(404);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			res.setStatus(400);
+			event = null;
+		}
+		return event;
+	}
+	
+	
 
 }
