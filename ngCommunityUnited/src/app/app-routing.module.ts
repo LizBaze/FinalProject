@@ -1,3 +1,4 @@
+import { VolunteereventComponent } from './components/volunteerevent/volunteerevent.component';
 import { AccountComponent } from './components/account/account.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
@@ -13,6 +14,7 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'account', component: AccountComponent },
   { path: 'organization', component: OrganizationComponent },
+  { path: 'volunteerevents', component: VolunteereventComponent },
 ];
 
 @NgModule({
