@@ -1,6 +1,7 @@
 package com.skilldistillery.communityunited.services;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -56,6 +57,24 @@ public class OrganizationServiceImpl implements OrganizationService {
 			return true;
 		}
 		return false;
+	}
+
+
+
+
+	@Override
+	public List<Organization> findAll() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+
+
+	@Override
+	public Organization updated(Organization org, int id, String email) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }
