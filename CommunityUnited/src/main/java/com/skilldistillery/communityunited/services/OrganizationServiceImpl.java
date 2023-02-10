@@ -92,7 +92,7 @@ public class OrganizationServiceImpl implements OrganizationService {
 		User user = userRepo.findByEmail(email);
 		Optional<Organization> orgOpt = orgRepo.findById(orgId);
 		Member member = null;
-		if(user != null && orgOpt.isPresent()) {
+		if (user != null && orgOpt.isPresent()) {
 			Organization org = orgOpt.get();
 			member = new Member();
 			MemberId memberId = new MemberId(user.getId(), org.getId());
@@ -103,7 +103,7 @@ public class OrganizationServiceImpl implements OrganizationService {
 			member.setDateJoined(LocalDateTime.now());
 			memberRepo.saveAndFlush(member);
 		}
-		
+
 		return member;
 	}
 
@@ -111,15 +111,32 @@ public class OrganizationServiceImpl implements OrganizationService {
 	public Organization findById(int id) {
 		Optional<Organization> orgOpt = orgRepo.findById(id);
 		Organization orgs = null;
-		if(orgOpt.isPresent()) {
+		if (orgOpt.isPresent()) {
 			orgs = orgOpt.get();
 		}
-		
+
 		return orgs;
 	}
-	
-	
-	
-	
+
+	@Override
+	public boolean leaveOrganization(int orgId, String email) {
+		boolean isRemoved = false;
+		User user = userRepo.findByEmail(email);
+		Organization org = null;
+		Optional<Organization> orgOpt = orgRepo.findById(orgId);
+		if (orgOpt.isPresent() && user != null) {
+			org = orgOpt.get();
+			MemberId memberId = new MemberId(user.getId(), org.getId());
+			Member member = memberRepo.findById(memberId);
+			if(member != null) {
+				memberRepo.delete(member);
+				isRemoved = true;
+			}
+			
+
+		}
+
+		return isRemoved;
+	}
 
 }

@@ -137,4 +137,18 @@ export class OrganizationService {
     })
    )
   }
+
+  removeUserFromOrg(id: number){
+    return this.http.delete<void>(this.url + 'api/organizations/' + id + '/users',  this.getHttpOptions()).pipe(
+      catchError((err: any) => {
+        console.log(err);
+        return throwError(
+          () =>
+            new Error(
+              'OrganizationService.removedUserFromOrg(): error removing.'
+            )
+        );
+      })
+    )
+  }
 }

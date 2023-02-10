@@ -15,6 +15,8 @@ public interface OrganizationService {
     Member addMemberToOrg(int orgId, String email);
     
     Organization findById(int id);
+    
+    boolean leaveOrganization(int orgId, String email);
 	
 
 }
