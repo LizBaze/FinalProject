@@ -14,6 +14,7 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { AccountComponent } from './components/account/account.component';
 import { OrganizationComponent } from './components/organization/organization.component';
 import { VolunteereventComponent } from './components/volunteerevent/volunteerevent.component';
+import { ParticipantComponent } from './components/participant/participant.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { VolunteereventComponent } from './components/volunteerevent/volunteerev
     NavbarComponent,
     AccountComponent,
     OrganizationComponent,
-    VolunteereventComponent
+    VolunteereventComponent,
+    ParticipantComponent
   ],
   imports: [
     BrowserModule,
