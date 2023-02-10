@@ -38,7 +38,7 @@ public class ParticipantServiceImpl implements ParticipantService {
 		if(user != null && eventOpt.isPresent()) {
 			event = eventOpt.get();
 		    participant = new Participant();
-			ParticipantId partId = new ParticipantId();
+			ParticipantId partId = new ParticipantId(); 
 			partId.setUserId(user.getId());
 			partId.setEventId(event.getId());
 			participant.setDateJoined(LocalDateTime.now());
@@ -49,5 +49,7 @@ public class ParticipantServiceImpl implements ParticipantService {
 		
 		return participant;
 	}
+	
+	
 
 }
