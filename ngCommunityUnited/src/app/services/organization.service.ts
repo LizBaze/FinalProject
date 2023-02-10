@@ -7,6 +7,7 @@ import { User } from '../models/user';
 import { environment } from 'src/environments/environment';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Member } from '../models/member';
+import { Volunteerevent } from '../models/volunteerevent';
 
 @Injectable({
   providedIn: 'root',
@@ -138,6 +139,7 @@ export class OrganizationService {
    )
   }
 
+<<<<<<< HEAD
   removeUserFromOrg(id: number){
     return this.http.delete<void>(this.url + 'api/organizations/' + id + '/users',  this.getHttpOptions()).pipe(
       catchError((err: any) => {
@@ -150,5 +152,16 @@ export class OrganizationService {
         );
       })
     )
+=======
+  createVolunteerevent(volunteerevent: Volunteerevent, oid: number): Observable<Volunteerevent> {
+    return this.http.post<Volunteerevent>(this.url + 'api/organizations/' + oid + '/volunteerevents/', volunteerevent, this.getHttpOptions()).pipe(
+      catchError((err: any) => {
+        console.log(err);
+        return throwError(
+          () => new Error('VolunteereventService.create(): error creating volunteerevent: ' + err)
+        );
+      })
+    );
+>>>>>>> b3d37d4e2d44fdb4851b47df49a57beb50ceee91
   }
 }

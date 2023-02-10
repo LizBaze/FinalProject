@@ -177,7 +177,7 @@ export class OrganizationComponent implements OnInit {
 
   createVolunteerevent(volunteerevent : Volunteerevent) {
     if (this.newVolunteerevent) {
-    this.eventService.createVolunteerevent(this.newVolunteerevent, this.selectedOrganization!.id).subscribe({
+    this.orgService.createVolunteerevent(this.newVolunteerevent, this.selectedOrganization!.id).subscribe({
       next: (volunteerevent) => {
         this.newVolunteerevent = new Volunteerevent();
       },
