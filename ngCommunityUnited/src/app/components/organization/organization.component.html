@@ -107,6 +107,14 @@
     <input class="form-control" type="text" name="startDate" [(ngModel)]="newVolunteerevent.startDate" ><br>
     <label class="form-label">End Date</label>
     <input class="form-control" type="text" name="endDate" [(ngModel)]="newVolunteerevent.endDate" ><br>
+    <label class="form-label">Street Address</label>
+    <input class="form-control" type="text" name="address" [(ngModel)]="newVolunteerevent.address.street" ><br>
+    <label class="form-label">City</label>
+    <input class="form-control" type="text" name="city" [(ngModel)]="newVolunteerevent.address.city" ><br>
+    <label class="form-label">State</label>
+    <input class="form-control" type="text" name="state" [(ngModel)]="newVolunteerevent.address.state" ><br>
+    <label class="form-label">Zip Code</label>
+    <input class="form-control" type="text" name="zip" [(ngModel)]="newVolunteerevent.address.zip" ><br>
     <div class="d-grid gap-2">
       <button type="button" class="btn btn-primary" (click)="createVolunteerevent(newVolunteerevent)">Create</button>
       <!-- <button type="button" class="btn btn-primary" (click)="changeAddLocationSelected()">Cancel</button> -->

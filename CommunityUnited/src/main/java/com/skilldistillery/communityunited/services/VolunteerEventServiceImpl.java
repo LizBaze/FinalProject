@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.skilldistillery.communityunited.entities.Organization;
 import com.skilldistillery.communityunited.entities.VolunteerEvent;
+import com.skilldistillery.communityunited.repositories.AddressRepository;
 import com.skilldistillery.communityunited.repositories.OrganizationRepository;
 import com.skilldistillery.communityunited.repositories.VolunteerEventRepository;
 
@@ -19,6 +20,9 @@ public class VolunteerEventServiceImpl implements VolunteerEventService {
 	
 	@Autowired
 	private OrganizationRepository orgRepo;
+	
+	@Autowired
+	private AddressRepository addressRepo;
 
 	@Override
 	public VolunteerEvent create(VolunteerEvent event, int id) {
@@ -26,6 +30,7 @@ public class VolunteerEventServiceImpl implements VolunteerEventService {
 		Optional<Organization> org = orgRepo.findById(id);
 		
 		if(!newEvent.isPresent() && org.isPresent()) {
+			event.setAddress(addressRepo.saveAndFlush(event.getAddress()));
 			event.setOrganization(org.get());
 			volunteerEventRepo.saveAndFlush(event);
 			return event;
