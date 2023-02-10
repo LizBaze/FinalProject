@@ -6,6 +6,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -36,7 +37,14 @@ public class ParticipantController {
 		
 	}
 	
-	
-	
+	@DeleteMapping("volunteerevents/{id}/users")
+	public void removeParticipant(@PathVariable int id, Principal principal, HttpServletResponse res) {
+		boolean removed = partService.removeParticipant(id, principal.getName());
+		if(removed == true) {
+			res.setStatus(204);
+		} else {
+			res.setStatus(400);
+		}
+	}
 
 }

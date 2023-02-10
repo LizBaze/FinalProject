@@ -122,6 +122,18 @@ export class VolunteereventComponent implements OnInit {
     })
   }
 
+  removeParticipant(id: number){
+    this.partService.removeParticipant(id).subscribe({
+      next: () => {
+        this.show(id);
+        this.reload();
+      },
+      error: (err: any) => {
+        console.error(err);
+      }
+    })
+  }
+
   checkParticipant(){
     let found = undefined;
     if (this.user && this.selected) {

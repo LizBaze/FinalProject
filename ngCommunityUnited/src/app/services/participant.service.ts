@@ -8,38 +8,63 @@ import { Participant } from '../models/participant';
 import { catchError, throwError, Observable } from 'rxjs';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class ParticipantService {
-
   private url = environment.baseUrl;
 
-  constructor(private auth: AuthService,
+  constructor(
+    private auth: AuthService,
     route: Router,
-    private http: HttpClient) { }
+    private http: HttpClient
+  ) {}
 
-    getHttpOptions() {
-      let httpOptions = {
-        headers: new HttpHeaders({
-          Authorization: `Basic ${this.auth.getCredentials()}`,
-          'X-Requested-With': 'XMLHttpRequest',
-        }),
-      };
-      return httpOptions;
-    }
+  getHttpOptions() {
+    let httpOptions = {
+      headers: new HttpHeaders({
+        Authorization: `Basic ${this.auth.getCredentials()}`,
+        'X-Requested-With': 'XMLHttpRequest',
+      }),
+    };
+    return httpOptions;
+  }
 
-    addParticipant(id: number): Observable<Participant> {
-      return this.http.post<Participant>(this.url + 'api/participants/' + id, {}, this.getHttpOptions()).pipe(
-        catchError((err: any) => {
-                console.log(err);
-                return throwError(
-                  () =>
-                    new Error(
-                      'ParticipantService.addParticipant(): error adding participant.'
-                    )
-                );
-              })
+  addParticipant(id: number): Observable<Participant> {
+    return this.http
+      .post<Participant>(
+        this.url + 'api/participants/' + id,
+        {},
+        this.getHttpOptions()
       )
+      .pipe(
+        catchError((err: any) => {
+          console.log(err);
+          return throwError(
+            () =>
+              new Error(
+                'ParticipantService.addParticipant(): error adding participant.'
+              )
+          );
+        })
+      );
+  }
 
-    }
+  removeParticipant(id: number) {
+    return this.http
+      .delete<void>(
+        this.url + 'api/volunteerevents/' + id + '/users',
+        this.getHttpOptions()
+      )
+      .pipe(
+        catchError((err: any) => {
+          console.log(err);
+          return throwError(
+            () =>
+              new Error(
+                'ParticipantService.addParticipant(): error adding participant.'
+              )
+          );
+        })
+      );
+  }
 }

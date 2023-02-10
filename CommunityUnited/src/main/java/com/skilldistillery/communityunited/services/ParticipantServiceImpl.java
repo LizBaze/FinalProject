@@ -14,6 +14,8 @@ import com.skilldistillery.communityunited.repositories.ParticipantRepository;
 import com.skilldistillery.communityunited.repositories.UserRepository;
 import com.skilldistillery.communityunited.repositories.VolunteerEventRepository;
 
+import antlr.debug.Event;
+
 @Service
 public class ParticipantServiceImpl implements ParticipantService {
 
@@ -50,6 +52,28 @@ public class ParticipantServiceImpl implements ParticipantService {
 		}
 		
 		return participant;
+	}
+
+
+
+	@Override
+	public boolean removeParticipant(int eventId, String email) {
+		boolean removed = false;
+		
+		User user = userRepo.findByEmail(email);
+		VolunteerEvent event = null;
+		Optional<VolunteerEvent> eventOpt = vRepo.findById(eventId);
+		if(user != null && eventOpt.isPresent()) {
+			event = eventOpt.get();
+			ParticipantId participantId = new ParticipantId(user.getId(), event.getId());
+			Participant participant = partRepo.findById(participantId);
+			if(participant != null) {
+				partRepo.delete(participant);
+				removed = true;
+			}
+		}
+		
+		return removed;
 	}
 	
 	
