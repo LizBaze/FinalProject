@@ -134,7 +134,6 @@ export class OrganizationComponent implements OnInit {
       },
     });
   }
-<<<<<<< HEAD
 
   addedMemberToOrg(id: number){
     this.orgService.addedMemberToOrg(id).subscribe({
@@ -176,7 +175,6 @@ export class OrganizationComponent implements OnInit {
    })
   }
 
-=======
   createVolunteerevent(volunteerevent : Volunteerevent) {
     if (this.newVolunteerevent) {
     this.eventService.createVolunteerevent(this.newVolunteerevent, this.selectedOrganization!.id).subscribe({
@@ -195,7 +193,6 @@ export class OrganizationComponent implements OnInit {
     newEvent(){
       this.newVolunteerevent = new Volunteerevent();
     }
->>>>>>> 4212fb3771554298f1a28ec8c895878dddbce79d
 
 
 }
