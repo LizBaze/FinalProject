@@ -5,7 +5,7 @@ import { Router } from '@angular/router';
 import { AuthService } from './auth.service';
 import { environment } from 'src/environments/environment';
 import { Participant } from '../models/participant';
-import { catchError, throwError } from 'rxjs';
+import { catchError, throwError, Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -16,8 +16,7 @@ export class ParticipantService {
 
   constructor(private auth: AuthService,
     route: Router,
-    private http: HttpClient,
-    private org: OrganizationComponent) { }
+    private http: HttpClient) { }
 
     getHttpOptions() {
       let httpOptions = {
@@ -29,8 +28,8 @@ export class ParticipantService {
       return httpOptions;
     }
 
-    addParticipant(id: number){
-      return this.http.post<Participant>(this.url + 'api/participants/' + id, null, this.getHttpOptions()).pipe(
+    addParticipant(id: number): Observable<Participant> {
+      return this.http.post<Participant>(this.url + 'api/participants/' + id, {}, this.getHttpOptions()).pipe(
         catchError((err: any) => {
                 console.log(err);
                 return throwError(
