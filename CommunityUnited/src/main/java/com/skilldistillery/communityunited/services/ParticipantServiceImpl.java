@@ -43,6 +43,8 @@ public class ParticipantServiceImpl implements ParticipantService {
 			partId.setEventId(event.getId());
 			participant.setDateJoined(LocalDateTime.now());
 			participant.setId(partId);
+			participant.setUser(user);
+			participant.setVolunteerEvent(event);
 			partRepo.saveAndFlush(participant);
 			
 		}

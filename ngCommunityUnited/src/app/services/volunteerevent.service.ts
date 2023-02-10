@@ -38,7 +38,7 @@ export class VolunteereventService {
 
 
   show(id: number): Observable<Volunteerevent> {
-    return this.http.get<Volunteerevent>(this.url+ 'api/volunteerevents/'  +id,).pipe(
+    return this.http.get<Volunteerevent>(this.url+ 'api/volunteerevents/'  +id, this.getHttpOptions()).pipe(
       catchError((err: any) => {
         console.log(err);
         return throwError(
