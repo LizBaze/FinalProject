@@ -139,7 +139,6 @@ export class OrganizationService {
    )
   }
 
-<<<<<<< HEAD
   removeUserFromOrg(id: number){
     return this.http.delete<void>(this.url + 'api/organizations/' + id + '/users',  this.getHttpOptions()).pipe(
       catchError((err: any) => {
@@ -152,7 +151,8 @@ export class OrganizationService {
         );
       })
     )
-=======
+  }
+
   createVolunteerevent(volunteerevent: Volunteerevent, oid: number): Observable<Volunteerevent> {
     return this.http.post<Volunteerevent>(this.url + 'api/organizations/' + oid + '/volunteerevents/', volunteerevent, this.getHttpOptions()).pipe(
       catchError((err: any) => {
@@ -162,6 +162,5 @@ export class OrganizationService {
         );
       })
     );
->>>>>>> b3d37d4e2d44fdb4851b47df49a57beb50ceee91
   }
 }
