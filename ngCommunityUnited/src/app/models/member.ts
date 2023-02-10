@@ -3,20 +3,20 @@ import { User } from './user';
 export class Member {
 
   user: User;
-  org: Organization;
+  organization: Organization;
   admin: boolean;
   dateJoined: string;
 
   constructor(
 
     user: User = new User(),
-    org: Organization = new Organization(),
+    organization: Organization = new Organization(),
     admin: boolean = false,
     dateJoined: string = ""
   ) {
 
     this.user = user;
-    this.org = org;
+    this.organization = organization;;
     this.admin = admin;
     this.dateJoined = dateJoined;
   }

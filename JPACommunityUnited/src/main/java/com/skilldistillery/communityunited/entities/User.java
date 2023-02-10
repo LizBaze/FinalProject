@@ -44,7 +44,7 @@ public class User {
 //	private List<Organization> organizations;
 	
 	@OneToMany(mappedBy="user")
-	@JsonIgnoreProperties(value= {"user", "organization"})
+//	@JsonIgnoreProperties(value= {"user", "organization"})
 	private List<Member> members;
 	
 	@ManyToMany

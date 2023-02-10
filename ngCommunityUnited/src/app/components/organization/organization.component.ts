@@ -83,7 +83,9 @@ export class OrganizationComponent implements OnInit {
     console.log(this.user);
     if (this.user && this.selectedOrganization) {
       for (let member of this.selectedOrganization.members) {
-        console.log(this.user + ' - ' + member);
+        console.log(this.selectedOrganization.members)
+        // console.log(this.user);
+        console.log(member);
         if (member.user.id === this.user.id && member.admin === true) {
           found = true;
           break;
