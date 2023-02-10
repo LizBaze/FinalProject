@@ -1,5 +1,5 @@
 import { Volunteerevent } from './../models/volunteerevent';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable, catchError, throwError } from 'rxjs';
@@ -60,6 +60,24 @@ export class VolunteereventService {
     );
   }
 
+  update(volunteerevent: Volunteerevent):Observable<Volunteerevent> {
+    const credentials = this.authService.getCredentials();
+    // Send credentials as Authorization header specifying Basic HTTP authentication
+    const httpOptions = {
+      headers: new HttpHeaders({
+        Authorization: `Basic ${credentials}`,
+        'X-Requested-With': 'XMLHttpRequest',
+      }),
+    };
+    return this.http.put<Volunteerevent>(this.url + 'api/volunteerevents/' + volunteerevent.id, volunteerevent, httpOptions).pipe(
+      catchError((err: any) => {
+        console.log(err);
+        return throwError(
+          () => new Error('Volunteerevent.update(): error updating volunteerevent: ' + err)
+        );
+      })
+    );
+  }
 
 
 
