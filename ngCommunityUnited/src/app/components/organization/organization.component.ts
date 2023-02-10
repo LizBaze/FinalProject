@@ -1,8 +1,11 @@
+import { VolunteereventComponent } from './../volunteerevent/volunteerevent.component';
 import { OrganizationService } from './../../services/organization.service';
 import { Component, OnInit } from '@angular/core';
 import { Organization } from 'src/app/models/organization';
 import { AuthService } from 'src/app/services/auth.service';
 import { User } from 'src/app/models/user';
+import { VolunteereventService } from 'src/app/services/volunteerevent.service';
+import { Volunteerevent } from 'src/app/models/volunteerevent';
 
 @Component({
   selector: 'app-organization',
@@ -18,6 +21,8 @@ export class OrganizationComponent implements OnInit {
 
   newOrganization: Organization | null = null;
 
+  newVolunteerevent: Volunteerevent | null = null;
+
   user: User | null = null;
 
   showId: Organization | null = null;
@@ -26,7 +31,7 @@ export class OrganizationComponent implements OnInit {
 
   ngOnInit() {
     this.index();
-    this.getUser();
+    console.log(this.user);
 
   }
 
@@ -35,6 +40,8 @@ export class OrganizationComponent implements OnInit {
       next: (orgs: Organization[]) => {
         this.allOrgs = orgs;
         console.log(orgs);
+        this.getUser();
+        console.log(this.user);
       },
       error: (err: any) => {
         console.error(err);
@@ -44,7 +51,8 @@ export class OrganizationComponent implements OnInit {
 
   constructor(
     private auth: AuthService,
-    private orgService: OrganizationService
+    private orgService: OrganizationService,
+    public eventService: VolunteereventService
   ) {}
 
   newOrg() {
@@ -62,6 +70,7 @@ export class OrganizationComponent implements OnInit {
         next: (loggedInUser) => {
           console.log(loggedInUser);
           this.user = loggedInUser;
+          console.log(this.user);
         },
         error: () => {
 
@@ -73,8 +82,12 @@ export class OrganizationComponent implements OnInit {
 
   checkAdmin() {
     let found = undefined;
+    console.log(this.user);
     if (this.user && this.selectedOrganization) {
       for (let member of this.selectedOrganization.members) {
+        console.log(this.selectedOrganization.members)
+        // console.log(this.user);
+        console.log(member);
         if (member.user.id === this.user.id && member.admin === true) {
           found = true;
           break;
@@ -121,6 +134,7 @@ export class OrganizationComponent implements OnInit {
       },
     });
   }
+<<<<<<< HEAD
 
   addedMemberToOrg(id: number){
     this.orgService.addedMemberToOrg(id).subscribe({
@@ -162,6 +176,26 @@ export class OrganizationComponent implements OnInit {
    })
   }
 
+=======
+  createVolunteerevent(volunteerevent : Volunteerevent) {
+    if (this.newVolunteerevent) {
+    this.eventService.createVolunteerevent(this.newVolunteerevent, this.selectedOrganization!.id).subscribe({
+      next: (volunteerevent) => {
+        this.newVolunteerevent = new Volunteerevent();
+      },
+      error: (err) => {
+        console.log('VolunteereventComponent.createVolunteerevent(): error creating event');
+        console.log(err);
+      }
+    });
+  }
+    this.index();
+    }
+
+    newEvent(){
+      this.newVolunteerevent = new Volunteerevent();
+    }
+>>>>>>> 4212fb3771554298f1a28ec8c895878dddbce79d
 
 
 }

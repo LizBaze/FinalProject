@@ -12,4 +12,7 @@ public interface VolunteerEventService {
 
 	VolunteerEvent getEvent(int eventId);
 	
+	VolunteerEvent update(VolunteerEvent event, int id);
+
+	
 }
