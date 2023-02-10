@@ -21,7 +21,7 @@ USE `volunteerdb` ;
 DROP TABLE IF EXISTS `address` ;
 
 CREATE TABLE IF NOT EXISTS `address` (
-  `id` INT NOT NULL,
+  `id` INT NOT NULL AUTO_INCREMENT,
   `street` VARCHAR(100) NULL,
   `city` VARCHAR(45) NULL,
   `state` VARCHAR(45) NULL,
@@ -73,11 +73,11 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `volunteer_event`
+-- Table `w`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `volunteer_event` ;
+DROP TABLE IF EXISTS `w` ;
 
-CREATE TABLE IF NOT EXISTS `volunteer_event` (
+CREATE TABLE IF NOT EXISTS `w` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(45) NULL,
   `description` TEXT NULL,
@@ -124,7 +124,7 @@ CREATE TABLE IF NOT EXISTS `participant` (
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_user_has_event_event1`
     FOREIGN KEY (`event_id`)
-    REFERENCES `volunteer_event` (`id`)
+    REFERENCES `w` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
@@ -179,7 +179,7 @@ CREATE TABLE IF NOT EXISTS `group_message` (
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_group_message_event1`
     FOREIGN KEY (`event_id`)
-    REFERENCES `volunteer_event` (`id`)
+    REFERENCES `w` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_group_message_group_message1`
@@ -218,7 +218,7 @@ CREATE TABLE IF NOT EXISTS `event_img` (
   INDEX `fk_event_img_volunteer_event1_idx` (`volunteer_event_id` ASC),
   CONSTRAINT `fk_event_img_volunteer_event1`
     FOREIGN KEY (`volunteer_event_id`)
-    REFERENCES `volunteer_event` (`id`)
+    REFERENCES `w` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
@@ -285,7 +285,7 @@ CREATE TABLE IF NOT EXISTS `volunteer_event_has_cause` (
   INDEX `fk_volunteer_event_has_cause_volunteer_event1_idx` (`volunteer_event_id` ASC),
   CONSTRAINT `fk_volunteer_event_has_cause_volunteer_event1`
     FOREIGN KEY (`volunteer_event_id`)
-    REFERENCES `volunteer_event` (`id`)
+    REFERENCES `w` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_volunteer_event_has_cause_cause1`
@@ -337,11 +337,11 @@ COMMIT;
 
 
 -- -----------------------------------------------------
--- Data for table `volunteer_event`
+-- Data for table `w`
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `volunteerdb`;
-INSERT INTO `volunteer_event` (`id`, `name`, `description`, `created_date`, `start_date`, `end_date`, `organization_id`, `address_id`) VALUES (1, 'Teacher', 'English Teacher', '2022-01-01', '2023-01-01', '2023-04-04', 1, 1);
+INSERT INTO `w` (`id`, `name`, `description`, `created_date`, `start_date`, `end_date`, `organization_id`, `address_id`) VALUES (1, 'Teacher', 'English Teacher', '2022-01-01', '2023-01-01', '2023-04-04', 1, 1);
 
 COMMIT;
 
