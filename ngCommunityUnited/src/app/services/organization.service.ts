@@ -139,6 +139,20 @@ export class OrganizationService {
    )
   }
 
+  removeUserFromOrg(id: number){
+    return this.http.delete<void>(this.url + 'api/organizations/' + id + '/users',  this.getHttpOptions()).pipe(
+      catchError((err: any) => {
+        console.log(err);
+        return throwError(
+          () =>
+            new Error(
+              'OrganizationService.removedUserFromOrg(): error removing.'
+            )
+        );
+      })
+    )
+  }
+
   createVolunteerevent(volunteerevent: Volunteerevent, oid: number): Observable<Volunteerevent> {
     return this.http.post<Volunteerevent>(this.url + 'api/organizations/' + oid + '/volunteerevents/', volunteerevent, this.getHttpOptions()).pipe(
       catchError((err: any) => {

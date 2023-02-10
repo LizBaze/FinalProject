@@ -194,5 +194,17 @@ export class OrganizationComponent implements OnInit {
       this.newVolunteerevent = new Volunteerevent();
     }
 
+    removedFromOrg(id: number){
+      this.orgService.removeUserFromOrg(id).subscribe({
+        next: () => {
+          this.showById(id);
+          this.index();
+        },
+        error: (err) => {
+          console.log(err);
+        }
+      })
+    }
+
 
 }
