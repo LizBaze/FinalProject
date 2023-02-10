@@ -1,8 +1,8 @@
 import { Organization } from 'src/app/models/organization';
-import { Address } from "./address";
+import { Address } from './address';
+import { Participant } from './participant';
 
 export class Volunteerevent {
-
   id: number;
   name: string;
   description: string;
@@ -11,8 +11,19 @@ export class Volunteerevent {
   endDate: string;
   organization: Organization;
   address: Address;
+  participants: Participant[];
 
-  constructor(id: number = 0, name: string = '', description: string = '', createdDate: string = '', startDate: string = '', endDate: string = '', organization: Organization = new Organization(), address: Address = new Address()) {
+  constructor(
+    id: number = 0,
+    name: string = '',
+    description: string = '',
+    createdDate: string = '',
+    startDate: string = '',
+    endDate: string = '',
+    organization: Organization = new Organization(),
+    address: Address = new Address(),
+    participants: Participant[] = []
+  ) {
     this.id = id;
     this.name = name;
     this.description = description;
@@ -21,6 +32,6 @@ export class Volunteerevent {
     this.endDate = endDate;
     this.organization = organization;
     this.address = address;
-  };
-
+    this.participants = participants;
+  }
 }

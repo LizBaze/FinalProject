@@ -13,12 +13,14 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.CreationTimestamp;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
 @Table(name="volunteer_event")
@@ -44,8 +46,9 @@ public class VolunteerEvent {
 	private Address address;
 	@ManyToMany(mappedBy="volunteerEvents")
 	private List<Cause> causes;
-	@ManyToMany(mappedBy="volunteerEvents")
-	private List<User> participants;
+	@OneToMany(mappedBy="volunteerEvent")
+	@JsonIgnoreProperties({"volunteerEvent"})
+	private List<Participant> participants;
 	
 	public VolunteerEvent() {
 		super();
@@ -55,7 +58,7 @@ public class VolunteerEvent {
 
 	public VolunteerEvent(int id, String name, String description, LocalDateTime createdDate, LocalDateTime startDate,
 			LocalDateTime endDate, Organization organization, Address address, List<Cause> causes,
-			List<User> participants) {
+			List<Participant> participants) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -151,13 +154,13 @@ public class VolunteerEvent {
 
 
 
-	public List<User> getParticipants() {
+	public List<Participant> getParticipants() {
 		return participants;
 	}
 
 
 
-	public void setParticipants(List<User> participants) {
+	public void setParticipants(List<Participant> participants) {
 		this.participants = participants;
 	}
 
@@ -197,20 +200,20 @@ public class VolunteerEvent {
 		}
 	}
 	
-	public void addParticipant(User participant) {
+	public void addParticipant(Participant participant) {
 		if (participants == null) {
 			participants = new ArrayList<>();
 		}
 		if(!participants.contains(participant)) {
 			participants.add(participant);
-			participant.addVolunteerEvent(this);
+			participant.setVolunteerEvent(this);
 		}
 	}
 	
-	public void removeParticipant(User participant) {
+	public void removeParticipant(Participant participant) {
 		if (participants != null && participants.contains(participant)) {
 			participants.remove(participant);
-			participant.removeVolunteerEvent(this);
+			participant.setVolunteerEvent(null);
 		}
 	}
 	

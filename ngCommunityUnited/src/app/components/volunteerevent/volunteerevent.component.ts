@@ -6,6 +6,8 @@ import { DatePipe } from '@angular/common';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ParticipantComponent } from '../participant/participant.component';
 import { Participant } from 'src/app/models/participant';
+import { User } from 'src/app/models/user';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-volunteerevent',
@@ -17,17 +19,20 @@ export class VolunteereventComponent implements OnInit {
   selected: null | Volunteerevent = null;
   newVolunteerevent: Volunteerevent = new Volunteerevent();
   editVolunteerevent: Volunteerevent | null = null;
+  user: User | null = null;
 
   constructor(
     private volunteerEventService: VolunteereventService,
     private route: ActivatedRoute,
     private router: Router,
-    private partService: ParticipantService
+    private partService: ParticipantService,
+    private auth: AuthService
   ) {}
 
   //add incomplete pipe to constructor after creating update method
 
   ngOnInit(): void {
+    this.getUser();
     if (!this.selected && this.route.snapshot.paramMap.get('id')) {
       let idString = this.route.snapshot.paramMap.get('id');
       if (idString) {
@@ -66,6 +71,7 @@ export class VolunteereventComponent implements OnInit {
     this.volunteerEventService.index().subscribe({
       next: (events) => {
         this.events = events;
+        console.log(this.events);
       },
       error: (oof) => {
         console.error('Error loading events:');
@@ -74,7 +80,11 @@ export class VolunteereventComponent implements OnInit {
     });
   }
   show(id: number) {
-    this.volunteerEventService.show(id).subscribe({});
+    this.volunteerEventService.show(id).subscribe({
+      next: (volunteerevent) => {
+        this.selected = volunteerevent;
+      }
+    });
   }
 
   setEditEvent() {
@@ -104,6 +114,7 @@ export class VolunteereventComponent implements OnInit {
     this.partService.addParticipant(id).subscribe({
       next: (addedParticipant: Participant) => {
         this.show(id);
+        this.reload();
       },
       error: (err) => {
         console.error(err);
@@ -111,4 +122,43 @@ export class VolunteereventComponent implements OnInit {
     })
   }
 
+  checkParticipant(){
+    let found = undefined;
+    if (this.user && this.selected) {
+      for (let member of this.selected.participants) {
+        console.log(member);
+        console.log(this.user);
+        console.log(this.selected);
+        if (member.user.id === this.user.id) {
+          found = true;
+          break;
+        }
+      }
+    }
+    return found !== undefined;
+  }
+
+  getUser() {
+    if (this.checkLogIn() ) {
+      this.auth.getLoggedInUser().subscribe({
+        next: (loggedInUser) => {
+          console.log(loggedInUser);
+          this.user = loggedInUser;
+          console.log(this.user);
+        },
+        error: () => {
+
+          console.error('not logged In');
+        },
+      });
+    }
+  }
+
+  checkLogIn() {
+    if (this.auth.checkLogin() === true) {
+      return true;
+    } else {
+      return false;
+    }
+  }
 }

@@ -44,13 +44,12 @@ public class User {
 //	private List<Organization> organizations;
 	
 	@OneToMany(mappedBy="user")
-//	@JsonIgnoreProperties(value= {"user", "organization"})
+	@JsonIgnoreProperties(value= {"user"})
 	private List<Member> members;
 	
-	@ManyToMany
+	@OneToMany(mappedBy="user")
 	@JsonIgnore
-	@JoinTable(name="participant", joinColumns=@JoinColumn(name="user_id"), inverseJoinColumns = @JoinColumn(name="event_id"))
-	private List<VolunteerEvent> volunteerEvents;
+	private List<Participant> participants;
 	
 	public User() {
 		super();
@@ -99,26 +98,29 @@ public class User {
 
 
 
-
-
-	public List<VolunteerEvent> getVolunteerEvents() {
-		return volunteerEvents;
-	}
-
-
-
-
-
-	public void setVolunteerEvents(List<VolunteerEvent> volunteerEvents) {
-		this.volunteerEvents = volunteerEvents;
-	}
-
+	
 
 
 
 
 	public void setPassword(String password) {
 		this.password = password;
+	}
+
+
+
+
+
+	public List<Participant> getParticipants() {
+		return participants;
+	}
+
+
+
+
+
+	public void setParticipants(List<Participant> participants) {
+		this.participants = participants;
 	}
 
 
@@ -293,21 +295,21 @@ public class User {
 			member.setUser(null);
 		}
 	}
-	
-	public void addVolunteerEvent(VolunteerEvent volunteerEvent) {
-		if (volunteerEvents == null) {
-			volunteerEvents = new ArrayList<>();
+
+	public void addParticipant(Participant participant) {
+		if (participants == null) {
+			participants = new ArrayList<>();
 		}
-		if(!volunteerEvents.contains(volunteerEvent)) {
-			volunteerEvents.add(volunteerEvent);
-			volunteerEvent.addParticipant(this);
+		if(!participants.contains(participant)) {
+			participants.add(participant);
+			participant.setUser(this);
 		}
 	}
 	
-	public void removeVolunteerEvent(VolunteerEvent volunteerEvent) {
-		if (volunteerEvents != null && volunteerEvents.contains(volunteerEvent)) {
-			volunteerEvents.remove(volunteerEvent);
-			volunteerEvent.removeParticipant(this);
+	public void removeParticipant(Participant participant) {
+		if (participants != null && participants.contains(participant)) {
+			participants.remove(participant);
+			participant.setUser(null);
 		}
 	}
 	
