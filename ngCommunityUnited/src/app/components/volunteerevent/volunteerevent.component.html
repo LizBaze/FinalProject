@@ -5,13 +5,39 @@
 </div>
 
 <div *ngIf="selected" >
-<h1>{{selected.id}}</h1>
-<h1>{{selected.name}}</h1>
-<h1>{{selected.description}}</h1>
-<h1>{{selected.createdDate}}</h1>
-<h1>{{selected.startDate}}</h1>
-<h1>{{selected.endDate}}</h1>
-<button class="btn btn-primary" (click)="displayAllEvents()">Display Events</button>
+  <button class="btn btn-primary" (click)="displayAllEvents()">Back</button>
+  <h1>{{selected.id}}</h1>
+  <h1>{{selected.name}}</h1>
+  <h1>{{selected.description}}</h1>
+  <h1>{{selected.createdDate}}</h1>
+  <h1>{{selected.startDate}}</h1>
+  <h1>{{selected.endDate}}</h1>
+  <button class="btn btn-primary" (click)="setEditEvent()">Edit Event</button>
+</div>
+
+<div *ngIf="editVolunteerevent">
+  <form>
+    <label class="form-label">Name</label>
+    <input class="form-control" type="text" name="name" [(ngModel)]="editVolunteerevent.name" ><br>
+    <label class="form-label">Description</label>
+    <input class="form-control" type="text" name="description" [(ngModel)]="editVolunteerevent.description" ><br>
+    <label class="form-label">Start Date</label>
+    <input class="form-control" type="text" name="startDate" [(ngModel)]="editVolunteerevent.startDate" ><br>
+    <label class="form-label">End Date</label>
+    <input class="form-control" type="text" name="endDate" [(ngModel)]="editVolunteerevent.endDate" ><br>
+    <label class="form-label">Street Address</label>
+    <input class="form-control" type="text" name="address" [(ngModel)]="editVolunteerevent.address.street" ><br>
+    <label class="form-label">City</label>
+    <input class="form-control" type="text" name="city" [(ngModel)]="editVolunteerevent.address.city" ><br>
+    <label class="form-label">State</label>
+    <input class="form-control" type="text" name="state" [(ngModel)]="editVolunteerevent.address.state" ><br>
+    <label class="form-label">Zip Code</label>
+    <input class="form-control" type="text" name="zip" [(ngModel)]="editVolunteerevent.address.zip" ><br>
+    <div class="d-grid gap-2">
+      <button type="button" class="btn btn-primary" (click)="updateEvent(editVolunteerevent)">Save</button>
+      <button type="button" class="btn btn-primary" (click)="editVolunteerevent = null">Cancel</button>
+    </div>
+  </form>
 </div>
 
 

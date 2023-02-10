@@ -25,7 +25,7 @@ public class Organization {
 	@ManyToMany(mappedBy="organizations")
 	private List<Cause> causes;
 	@OneToMany(mappedBy="organization")
-	//@JsonIgnoreProperties({"organization", "user"})
+	@JsonIgnoreProperties({"organization"})
 	private List<Member> members;
 	
 	

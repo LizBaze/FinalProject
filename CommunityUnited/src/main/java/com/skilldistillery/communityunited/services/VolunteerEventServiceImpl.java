@@ -65,7 +65,6 @@ public class VolunteerEventServiceImpl implements VolunteerEventService {
 			update.setCreatedDate(event.getCreatedDate());
 			update.setStartDate(event.getStartDate());
 			update.setEndDate(event.getEndDate());
-	
 		}
 		return volunteerEventRepo.saveAndFlush(update);
 		

@@ -70,8 +70,32 @@ export class VolunteereventComponent implements OnInit {
   }
   show(id: number) {
     this.volunteerEventService.show(id).subscribe({
-})
-}
+    })
+  }
+
+  setEditEvent() {
+    this.editVolunteerevent = Object.assign({}, this.selected);
+  }
+
+  updateEvent(volunteerevent: Volunteerevent, goToDetail = true): void {
+    console.log(volunteerevent);
+    this.volunteerEventService.update(volunteerevent).subscribe({
+      next: (updateEvent) => {
+        if (goToDetail) {
+          this.selected = updateEvent;
+        } else {
+          this.selected = null;
+        }
+        this.editVolunteerevent = null;
+        this.reload();
+      },
+      error: (toobad) => {
+        console.error('VolunteereventComponent.updateEvent: error updating');
+        console.error(toobad);
+      }
+    });
+
+  }
 
 
 
