@@ -14,6 +14,7 @@
 
   <button *ngIf="checkAdmin()" (click)="editOrg(selectedOrganization)">Edit</button>
   <button (click)="selectedOrganization = null">Back</button>
+  <button *ngIf="!checkMember()" (click)="addedMemberToOrg(selectedOrganization.id)">Join Organization</button>
 </div>
 
 <form *ngIf="editOrganization">

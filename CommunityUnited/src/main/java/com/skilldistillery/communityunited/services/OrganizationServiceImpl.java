@@ -87,4 +87,39 @@ public class OrganizationServiceImpl implements OrganizationService {
 		return orgRepo.findAll();
 	}
 
+	@Override
+	public Member addMemberToOrg(int orgId, String email) {
+		User user = userRepo.findByEmail(email);
+		Optional<Organization> orgOpt = orgRepo.findById(orgId);
+		Member member = null;
+		if(user != null && orgOpt.isPresent()) {
+			Organization org = orgOpt.get();
+			member = new Member();
+			MemberId memberId = new MemberId(user.getId(), org.getId());
+			member.setId(memberId);
+			member.setOrganization(org);
+			member.setUser(user);
+			member.setAdmin(false);
+			member.setDateJoined(LocalDateTime.now());
+			memberRepo.saveAndFlush(member);
+		}
+		
+		return member;
+	}
+
+	@Override
+	public Organization findById(int id) {
+		Optional<Organization> orgOpt = orgRepo.findById(id);
+		Organization orgs = null;
+		if(orgOpt.isPresent()) {
+			orgs = orgOpt.get();
+		}
+		
+		return orgs;
+	}
+	
+	
+	
+	
+
 }

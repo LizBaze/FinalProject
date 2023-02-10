@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.skilldistillery.communityunited.entities.Member;
 import com.skilldistillery.communityunited.entities.Organization;
 import com.skilldistillery.communityunited.services.OrganizationService;
 
@@ -68,5 +69,25 @@ public class OrganizationController {
 		
 		return admin;
 	}
+	
+	@PostMapping("organizations/{id}/users")
+	public Member addMemberToOrg(@PathVariable int id, HttpServletResponse res, Principal principal) {
+		Member addedMember = orgService.addMemberToOrg(id, principal.getName());
+		if(addedMember != null) {
+			res.setStatus(200);
+		}
+		else {
+			res.setStatus(404);
+		}
+		
+		return addedMember;
+	}
+	
+	@GetMapping("organizations/{id}")
+	public Organization findById(@PathVariable int id, HttpServletResponse res) {
+		return orgService.findById(id);
+		
+	}
+	
 
 }

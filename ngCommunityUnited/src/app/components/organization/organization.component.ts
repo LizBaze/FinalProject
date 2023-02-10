@@ -20,6 +20,8 @@ export class OrganizationComponent implements OnInit {
 
   user: User | null = null;
 
+  showId: Organization | null = null;
+
 
 
   ngOnInit() {
@@ -79,7 +81,6 @@ export class OrganizationComponent implements OnInit {
         }
       }
     }
-
     return found !== undefined;
   }
 
@@ -120,4 +121,47 @@ export class OrganizationComponent implements OnInit {
       },
     });
   }
+
+  addedMemberToOrg(id: number){
+    this.orgService.addedMemberToOrg(id).subscribe({
+      next: (addedMember)=>{
+        this.showById(id);
+        this.index();
+        console.log(addedMember);
+      },
+      error: (err)=> {
+        console.error(err);
+      }
+    })
+
+  }
+
+  checkMember(){
+    let found = undefined;
+    if (this.user && this.selectedOrganization) {
+      for (let member of this.selectedOrganization.members) {
+        if (member.user.id === this.user.id) {
+          found = true;
+          break;
+        }
+      }
+    }
+    return found !== undefined;
+  }
+
+  showById(id: number){
+   this.orgService.showById(id).subscribe({
+    next: (org: Organization)=>{
+      this.showId = org;
+      this.selectedOrganization = this.showId;
+    },
+    error: (err)=>{
+      console.error(err);
+      return null;
+    }
+   })
+  }
+
+
+
 }
