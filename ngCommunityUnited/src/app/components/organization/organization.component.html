@@ -93,3 +93,23 @@
     <button (click)="newOrganization = null">Cancel</button>
   </div>
 </form>
+
+
+<div *ngIf="selectedOrganization">
+  <h1 (click)="newEvent()">Add New Event</h1>
+  <form *ngIf="newVolunteerevent">
+    <label class="form-label">Name</label>
+    <input class="form-control" type="text" name="name" [(ngModel)]="newVolunteerevent.name" ><br>
+    <label class="form-label">Description</label>
+    <input class="form-control" type="text" name="description" [(ngModel)]="newVolunteerevent.description" ><br>
+    <label class="form-label">Start Date</label>
+    <input class="form-control" type="text" name="startDate" [(ngModel)]="newVolunteerevent.startDate" ><br>
+    <label class="form-label">End Date</label>
+    <input class="form-control" type="text" name="endDate" [(ngModel)]="newVolunteerevent.endDate" ><br>
+    <div class="d-grid gap-2">
+      <button type="button" class="btn btn-primary" (click)="createVolunteerevent(newVolunteerevent)">Create</button>
+      <!-- <button type="button" class="btn btn-primary" (click)="changeAddLocationSelected()">Cancel</button> -->
+    </div>
+  </form>
+
+</div>

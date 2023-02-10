@@ -12,7 +12,18 @@ import { AuthService } from './auth.service';
 export class VolunteereventService {
   private url = environment.baseUrl;
 
-  constructor(private auth: AuthService, route: Router, private http: HttpClient) { }
+
+  constructor(private authService: AuthService, route: Router, private http: HttpClient) { }
+
+  getHttpOptions() {
+    let options = {
+      headers: {
+        Authorization: 'Basic ' + this.authService.getCredentials(),
+        'X-Requested-With': 'XMLHttpRequest',
+      },
+    };
+    return options;
+  }
 
   index(): Observable<Volunteerevent[]>{
     return this.http.get<Volunteerevent[]>(this.url + 'api/volunteerevents').pipe(
@@ -37,9 +48,22 @@ export class VolunteereventService {
     );
   }
 
-  // createVolunteerevent(volunteerevent) {
-  //   return this.http.post(this.url + '/volunteerevents', volunteerevent);
-  // }
+
+  createVolunteerevent(volunteerevent: Volunteerevent, oid: number): Observable<Volunteerevent> {
+    return this.http.post<Volunteerevent>(this.url + 'api/organizations/' + oid + 'volunteerevents/', volunteerevent, this.getHttpOptions()).pipe(
+      catchError((err: any) => {
+        console.log(err);
+        return throwError(
+          () => new Error('VolunteereventService.create(): error creating volunteerevent: ' + err)
+        );
+      })
+    );
+  }
+
+
+
+
+
 
   // updateVolunteerevent(id, volunteerevent) {
   //   return this.http.put(this.url + '/volunteerevents/' + id, volunteerevent);
