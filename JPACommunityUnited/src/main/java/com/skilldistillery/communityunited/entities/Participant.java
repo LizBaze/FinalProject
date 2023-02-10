@@ -12,6 +12,8 @@ import javax.persistence.MapsId;
 
 import org.hibernate.annotations.CreationTimestamp;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 @Entity
 public class Participant {
 
@@ -20,10 +22,12 @@ public class Participant {
 	@ManyToOne
 	@JoinColumn(name="user_id")
 	@MapsId(value="userId")
+	@JsonIgnoreProperties({"participants"})
 	private User user;
 	@ManyToOne
 	@JoinColumn(name="event_id")
 	@MapsId(value="eventId")
+	@JsonIgnoreProperties({"participants"})
 	private VolunteerEvent volunteerEvent;
 	private String description;
 	@Column(name="img_url")
