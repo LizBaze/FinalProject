@@ -6,7 +6,7 @@ export class GroupMessage {
   user: User;
   volunteerEvent: Volunteerevent;
   datePosted: string;
-  inReplyTo: GroupMessage;
+  inReplyTo: GroupMessage | null;
 
   constructor(
     id: number = 0,
@@ -14,7 +14,7 @@ export class GroupMessage {
     user: User = new User(),
     volunteerEvent: Volunteerevent = new Volunteerevent(),
     datePosted: string = '',
-    inReplyTo: GroupMessage = new GroupMessage()
+    inReplyTo: GroupMessage | null = null
   ) {
     this.id = id;
     this.description = description;

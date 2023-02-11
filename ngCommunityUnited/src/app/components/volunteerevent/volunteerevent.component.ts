@@ -23,6 +23,8 @@ export class VolunteereventComponent implements OnInit {
   editVolunteerevent: Volunteerevent | null = null;
   user: User | null = null;
 
+  newMessage: GroupMessage = new GroupMessage();
+
   constructor(
     private volunteerEventService: VolunteereventService,
     private route: ActivatedRoute,
@@ -204,6 +206,40 @@ export class VolunteereventComponent implements OnInit {
     })
   }
 
+  createMessage(message: GroupMessage, id: number){
+    this.messageService.createMessage(message, id).subscribe({
+      next: (message: GroupMessage)=>{
+        if(this.selected){
+          this.reloadMessage(this.selected.id);
+        }
+      },
+      error: (err)=>{
+        console.log(err);
+      }
+    })
+  }
+
+  deleteMessage(id: number){
+    this.messageService.deleteMessage(id).subscribe({
+      next: (deletedMessage) => {
+        if(this.selected){
+          this.reloadMessage(this.selected.id);
+        }
+      },
+      error:(err) => {
+        console.log(err);
+      }
+    })
+  }
+
+
+  checkMessageOwner(message: GroupMessage){
+     if(this.user && message.user.id === this.user.id){
+        return true;
+     }
+     return false;
+     
+  }
 
 
 }

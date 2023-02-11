@@ -98,7 +98,7 @@
 
 
 <div *ngIf="selectedOrganization">
-  <h1 (click)="newEvent()">Add New Event</h1>
+  <button (click)="newEvent()" *ngIf="checkAdmin()">Add New Event</button>
   <form *ngIf="newVolunteerevent">
     <label class="form-label">Name</label>
     <input class="form-control" type="text" name="name" [(ngModel)]="newVolunteerevent.name" ><br>

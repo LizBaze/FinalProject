@@ -15,11 +15,18 @@
   <button *ngIf="!checkParticipant()" class="btn btn-primary" (click)="addParticipant(selected.id)">Join Event</button>
   <button *ngIf="checkParticipant()" class="btn btn-primary" (click)="removeParticipant(selected.id)">Leave Event</button>
   <button *ngIf="checkAdmin(selected)" class="btn btn-primary" (click)="setEditEvent()">Edit Event</button>
-
+<br>
+<br>
   <ul *ngIf="checkParticipant()">
-    <li *ngFor="let message of messages">{{message.description}}</li>
+    <li *ngFor="let message of messages">{{message.description}}<button *ngIf="checkMessageOwner(message)"   (click)="deleteMessage(message.id)">Delete</button></li>
   </ul>
+  <input type="text"  name="description" [(ngModel)]="newMessage.description">
+  <button class="btn btn-primary" (click)="createMessage(newMessage, selected.id)">Submit</button>
+
+
 </div>
+
+
 
 <div *ngIf="editVolunteerevent">
   <form>
@@ -46,5 +53,4 @@
   </form>
 </div>
 
-<app-group-message></app-group-message>
 

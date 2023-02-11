@@ -45,4 +45,28 @@ export class GroupMessageService {
         })
       );
   }
+
+  createMessage(message: GroupMessage, id: number){
+    return this.http.post<GroupMessage>(this.url + 'api/volunteerevents/' + id + '/groupmessages', message, this.getHttpOptions()).pipe(
+      catchError((err: any) => {
+        console.log(err);
+        return throwError(
+          () =>
+            new Error('GroupMessageService.create() error retrieving creating messages ' + err)
+        );
+      })
+    )
+  }
+
+  deleteMessage(id: number){
+   return this.http.delete<void>(this.url + 'api/groupmessages/' + id, this.getHttpOptions()).pipe(
+    catchError((err: any) => {
+      console.log(err);
+      return throwError(
+        () =>
+          new Error('GroupMessageService.deleteMessage() error deleteing messages ' + err)
+      );
+    })
+   )
+  }
 }
