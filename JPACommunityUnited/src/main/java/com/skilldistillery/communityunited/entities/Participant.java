@@ -22,7 +22,7 @@ public class Participant {
 	@ManyToOne
 	@JoinColumn(name="user_id")
 	@MapsId(value="userId")
-	@JsonIgnoreProperties({"participants"})
+	@JsonIgnoreProperties({"participants", "members"})
 	private User user;
 	@ManyToOne
 	@JoinColumn(name="event_id")

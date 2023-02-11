@@ -150,6 +150,16 @@ export class VolunteereventComponent implements OnInit {
     return found !== undefined;
   }
 
+  checkAdmin(event: Volunteerevent){
+    for (let member of event.organization.members) {
+      if (this.user && member.user.id === this.user.id && member.admin === true) {
+        return true;
+      }
+
+  }
+  return false;
+}
+
   getUser() {
     if (this.checkLogIn() ) {
       this.auth.getLoggedInUser().subscribe({

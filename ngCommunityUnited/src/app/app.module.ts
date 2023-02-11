@@ -15,6 +15,7 @@ import { AccountComponent } from './components/account/account.component';
 import { OrganizationComponent } from './components/organization/organization.component';
 import { VolunteereventComponent } from './components/volunteerevent/volunteerevent.component';
 import { ParticipantComponent } from './components/participant/participant.component';
+import { GroupMessageComponent } from './components/group-message/group-message.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { ParticipantComponent } from './components/participant/participant.compo
     AccountComponent,
     OrganizationComponent,
     VolunteereventComponent,
-    ParticipantComponent
+    ParticipantComponent,
+    GroupMessageComponent
   ],
   imports: [
     BrowserModule,
