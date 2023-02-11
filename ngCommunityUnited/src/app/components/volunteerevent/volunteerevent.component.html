@@ -15,6 +15,10 @@
   <button *ngIf="!checkParticipant()" class="btn btn-primary" (click)="addParticipant(selected.id)">Join Event</button>
   <button *ngIf="checkParticipant()" class="btn btn-primary" (click)="removeParticipant(selected.id)">Leave Event</button>
   <button *ngIf="checkAdmin(selected)" class="btn btn-primary" (click)="setEditEvent()">Edit Event</button>
+
+  <ul *ngIf="checkParticipant()">
+    <li *ngFor="let message of messages">{{message.description}}</li>
+  </ul>
 </div>
 
 <div *ngIf="editVolunteerevent">

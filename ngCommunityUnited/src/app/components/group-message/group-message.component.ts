@@ -16,7 +16,7 @@ export class GroupMessageComponent {
   }
 
   ngOnInit() {
-    this.reload(1);
+
   }
 
 

@@ -8,6 +8,8 @@ import { ParticipantComponent } from '../participant/participant.component';
 import { Participant } from 'src/app/models/participant';
 import { User } from 'src/app/models/user';
 import { AuthService } from 'src/app/services/auth.service';
+import { GroupMessageService } from 'src/app/services/group-message.service';
+import { GroupMessage } from 'src/app/models/group-message';
 
 @Component({
   selector: 'app-volunteerevent',
@@ -26,10 +28,13 @@ export class VolunteereventComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private partService: ParticipantService,
-    private auth: AuthService
+    private auth: AuthService,
+    private messageService: GroupMessageService
   ) {}
 
   //add incomplete pipe to constructor after creating update method
+
+  messages: GroupMessage[] | null = null;
 
   ngOnInit(): void {
     this.getUser();
@@ -61,6 +66,10 @@ export class VolunteereventComponent implements OnInit {
 
   displayEvent(volunteerevent: Volunteerevent | null) {
     this.selected = volunteerevent;
+    if(this.selected){
+      this.reloadMessage(this.selected.id);
+      
+    }
   }
 
   displayAllEvents() {
@@ -183,4 +192,18 @@ export class VolunteereventComponent implements OnInit {
       return false;
     }
   }
+
+  reloadMessage(id: number){
+    this.messageService.reload(id).subscribe({
+      next: (messages: GroupMessage[]) => {
+        this.messages = messages;
+      },
+      error: (err) => {
+        console.log(err);
+      }
+    })
+  }
+
+
+
 }
