@@ -150,7 +150,7 @@ export class OrganizationComponent implements OnInit {
   }
 
   checkMember(){
-    let found = undefined;
+    let found = false;
     if (this.user && this.selectedOrganization) {
       for (let member of this.selectedOrganization.members) {
         if (member.user.id === this.user.id) {
@@ -159,7 +159,7 @@ export class OrganizationComponent implements OnInit {
         }
       }
     }
-    return found !== undefined;
+    return found;
   }
 
   showById(id: number){
