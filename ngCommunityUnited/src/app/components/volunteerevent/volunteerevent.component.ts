@@ -70,7 +70,7 @@ export class VolunteereventComponent implements OnInit {
     this.selected = volunteerevent;
     if(this.selected){
       this.reloadMessage(this.selected.id);
-      
+
     }
   }
 
@@ -238,7 +238,7 @@ export class VolunteereventComponent implements OnInit {
         return true;
      }
      return false;
-     
+
   }
 
 
