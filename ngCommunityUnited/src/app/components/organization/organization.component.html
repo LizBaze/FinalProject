@@ -1,6 +1,7 @@
 <div *ngIf="checkLogIn()">
 <button (click)="newOrg()">Create New Org</button>
 </div>
+
 <div *ngIf="!selectedOrganization && !editOrganization && !newOrganization">
   <ul>
     <li *ngFor="let org of allOrgs" (click)="selectedOrganization = org">

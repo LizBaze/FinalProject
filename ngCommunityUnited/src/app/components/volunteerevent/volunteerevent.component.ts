@@ -146,7 +146,7 @@ export class VolunteereventComponent implements OnInit {
   }
 
   checkParticipant(){
-    let found = undefined;
+    let found = false;
     if (this.user && this.selected) {
       for (let member of this.selected.participants) {
         console.log(member);
@@ -158,7 +158,8 @@ export class VolunteereventComponent implements OnInit {
         }
       }
     }
-    return found !== undefined;
+    console.log(found);
+    return found;
   }
 
   checkAdmin(event: Volunteerevent){
@@ -211,6 +212,7 @@ export class VolunteereventComponent implements OnInit {
       next: (message: GroupMessage)=>{
         if(this.selected){
           this.reloadMessage(this.selected.id);
+          this.newMessage = new GroupMessage();
         }
       },
       error: (err)=>{

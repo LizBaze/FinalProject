@@ -17,6 +17,7 @@ export class RegisterComponent {
   register(user: User): void {
     console.log('register user:');
     console.log(user);
+    user.imgUrl = 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Default_pfp.svg/1200px-Default_pfp.svg.png';
     this.auth.register(user).subscribe({
       next: (registeredUser) => {
         this.auth.login(user.email, user.password).subscribe({
