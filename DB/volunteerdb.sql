@@ -371,7 +371,7 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `volunteerdb`;
-INSERT INTO `group_message` (`id`, `description`, `date_posted`, `user_id`, `event_id`, `in_reply_to`) VALUES (1, 'Very excited for the event', '2022-02-02', 1, 1, 1);
+INSERT INTO `group_message` (`id`, `description`, `date_posted`, `user_id`, `event_id`, `in_reply_to`) VALUES (1, 'Very excited for the event', '2022-02-02', 1, 1, null);
 
 COMMIT;
 
