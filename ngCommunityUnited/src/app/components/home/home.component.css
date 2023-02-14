@@ -1,5 +1,37 @@
-.carousel {
+/* .carousel {
   height: 500px;
   width: auto;
 }
 
+.slide{
+  height: 70%;
+  width: 100%;
+}
+
+.picsum-img-wrapper {
+  height: 200;
+  width: 100%;
+} */
+
+/* .slide .carousel{
+  width:100%;
+  height: 10px;
+
+} */
+
+#photo {
+  width: 90%;
+  height: 40%;
+  background-size: contain;
+}
+
+#carousel {
+  width: 100%;
+  height: 40%;
+  margin-left: 5.10%;
+}
+
+.indicator {
+  margin: auto;
+
+}

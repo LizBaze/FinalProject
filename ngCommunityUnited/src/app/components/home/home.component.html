@@ -28,18 +28,21 @@
   </button>
 </div> -->
 
-<ngb-carousel class="carousel"
+<ngb-carousel id="carousel" class="carousel"
 	*ngIf="images"
-	[showNavigationArrows]="showNavigationArrows"
-	[showNavigationIndicators]="showNavigationIndicators"
+
+
 >
-	<ng-template ngbSlide *ngFor="let image of images">
+<div class="indicator">
+[showNavigationIndicators]="showNavigationIndicators"
+</div>
+
+	<ng-template class="slide mx-auto" ngbSlide *ngFor="let image of images">
 		<div class="picsum-img-wrapper">
-			<img [src]="image" alt="Random slide" />
+			<img  id="photo" [src]="image" alt="Random slide" />
 		</div>
-		<div class="carousel-caption">
-			<h3>No mouse navigation</h3>
-			<p>This carousel hides navigation arrows and indicators.</p>
+		<div  class="carousel-caption">
+
 		</div>
 	</ng-template>
 </ngb-carousel>
