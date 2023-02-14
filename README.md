@@ -35,6 +35,7 @@
 | POST    | `/api/organizations` | Request of a new organization while user is logged in            | Generates a new organization into the database|
 | POST       | `/api/organizations/1/users` |  Retreives organization by id and user by email | Add's the user as a member to the organization  |
 | PUT       | `/api/organizations/1` |  Request of a new version of an organization | Updated organization information to the database
+| DELETE       | `/api/organizations/1/users` |   |  Removes user by email from organization id        |
 
 
 
