@@ -11,6 +11,27 @@
 # Lesson Learned 
 
 # Technologies Used
+- Java
+- MySQL / MYSQL workbench
+- JPA
+- REST API
+- JPA
+- Gradle
+- XML
+- JavaScript
+- TypeScript
+- JSON
+- Angular
+- MAMP
+- Tomcat 
+- AWS
+- HTML
+- CSS
+- Bootstrap
+- Visual Code Studio
+- SpringToolSuite4
+- PostMan
+
 
 # Our Team
 
