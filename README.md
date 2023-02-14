@@ -48,5 +48,13 @@
 | POST       | `/api/organizations/1/volunteerevents` |  Request's a new version of volunteer events by organization id | Generates a new volunteer event into the database |
 | PUT    | `/api/volunteerevents/1` |  Request's a new version of volunteer event           | Updated volunteer event information into the database|
 
+## Participant Entity
+
+| HTTP Verb | URI                  | Request Body | Response Body |
+|-----------|----------------------|--------------|---------------|
+| POST      | `/api/participants/1`    |  Request's the user by email to be added as a participant   | Generates a new participant for that volunteer event
+| DELETE      | `/api/volunteerevents/1/users` | | Removes participant from the volunteer event |
+
+
 
 
