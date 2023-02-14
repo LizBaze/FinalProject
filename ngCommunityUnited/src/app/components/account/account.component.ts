@@ -10,8 +10,13 @@ import { User } from 'src/app/models/user';
 export class AccountComponent {
   editUser: User | null = null;
   deleteUser: User | null = null;
+  user: User | null = null;
 
   constructor(private auth: AuthService) {}
+
+  ngOnInit() {
+    this.getUser();
+  }
 
   editAccount() {
     this.auth.getLoggedInUser().subscribe({
@@ -57,9 +62,29 @@ export class AccountComponent {
     });
   }
 
+  getUser() {
+    if (this.checkLogIn() ) {
+      this.auth.getLoggedInUser().subscribe({
+        next: (loggedInUser) => {
+          console.log(loggedInUser);
+          this.user = loggedInUser;
+          console.log(this.user);
+        },
+        error: () => {
 
+          console.error('not logged In');
+        },
+      });
+    }
+  }
 
-
+  checkLogIn() {
+    if (this.auth.checkLogin() === true) {
+      return true;
+    } else {
+      return false;
+    }
+  }
 
 
 }
