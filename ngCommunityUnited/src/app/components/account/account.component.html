@@ -1,4 +1,4 @@
-<div class="card-div">
+<!-- <div class="card-div">
   <div *ngIf="user && !editUser" class="card">
     <img class="card-img-top" src="{{user.imgUrl}}" alt="Card image cap">
     <div class="card-body">
@@ -9,7 +9,43 @@
       <button class="btn btn-info" (click)="disableAccount()">Delete Account</button>
     </div>
   </div>
+</div> -->
+
+<div *ngIf="user && !editUser" class="container">
+  <div class="">
+    <img src="{{user?.imgUrl}}" alt="">
+  </div>
+
+  <div class="">
+    <h3>Name: {{user.firstName}} {{user.lastName}}</h3>
+    <p>About Me: {{user.bio}}</p>
+    <div>
+      Address:
+      <br>
+      {{user.address.street}}
+      <br>
+      {{user.address.city}}, {{user.address.state}} {{user.address.zip}}
+    </div>
+  </div>
+  <div class="">
+    <button class="btn btn-info" (click)="editAccount()">Edit Account</button>
+      <button class="btn btn-info" (click)="disableAccount()">Delete Account</button>
+  </div>
 </div>
+<div *ngIf="user" class="container">
+<h3>{{user.firstName}} is a member of these organizations:</h3>
+</div>
+ <div *ngIf="user" class="container grid-container">
+<div *ngFor="let member of user.members" class="grid-item">
+  <img src="{{member.organization.logo}}" alt="">
+  <br>
+  {{member.organization.name}}
+</div>
+
+
+</div>
+
+
 
 
 

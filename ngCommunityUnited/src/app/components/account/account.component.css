@@ -7,9 +7,26 @@
   width: 400px;
 }
 
-.card-div {
-  text-align: center;
-  justify-content: center;
-  align-items: center;
-  display: flex;
+.btn {
+  margin:5px;
+  padding: 5px;
+}
+
+.container {
+  margin:15px;
+  padding:15px;
+}
+
+.grid-container {
+	display: grid;
+	gap: 20px;
+	grid-template-columns: repeat(auto-fit, 300px);
+	grid-template-rows: auto;
+	place-items: center;
+	align-items: center;
+	padding-top: 20px;
+}
+
+.grid-item {
+	width: 300px;
 }

@@ -1,4 +1,5 @@
-import { Member } from "./member";
+import { Address } from './address';
+import { Member } from './member';
 
 export class User {
   id: number;
@@ -10,10 +11,23 @@ export class User {
   imgUrl: string;
   enabled: boolean;
   bio: string;
+  address: Address;
 
   members: Member[];
 
-  constructor(id: number = 0, firstName: string = '', lastName: string ='', email: string = '', password: string = '', role: string = '', imgUrl: string = '', enabled: boolean = false, bio: string = '', members: Member[] = []) {
+  constructor(
+    id: number = 0,
+    firstName: string = '',
+    lastName: string = '',
+    email: string = '',
+    password: string = '',
+    role: string = '',
+    imgUrl: string = '',
+    enabled: boolean = false,
+    bio: string = '',
+    members: Member[] = [],
+    address: Address = new Address()
+  ) {
     this.id = id;
     this.firstName = firstName;
     this.lastName = lastName;
@@ -24,7 +38,6 @@ export class User {
     this.enabled = enabled;
     this.bio = bio;
     this.members = members;
-  };
-
-
+    this.address = address;
+  }
 }
