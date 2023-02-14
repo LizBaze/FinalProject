@@ -1,6 +1,4 @@
-
-
-<div *ngIf="selected" >
+<div *ngIf="selected">
   <button class="btn btn-info" (click)="displayAllEvents()">Back</button>
   <!-- <h1>{{selected.id}}</h1>
   <h1>{{selected.name}}</h1>
@@ -11,162 +9,286 @@
   <button *ngIf="!checkParticipant()" class="btn btn-primary" (click)="addParticipant(selected.id)">Join Event</button> -->
 
   <!-- <button *ngIf="checkAdmin(selected)" class="btn btn-primary" (click)="setEditEvent()">Edit Event</button> -->
-<br>
-<br>
+  <br />
+  <br />
   <!-- <ul *ngIf="checkParticipant()">
     <li *ngFor="let message of messages">{{message.description}}<button *ngIf="checkMessageOwner(message)"   (click)="deleteMessage(message.id)">Delete</button></li>
   </ul>
   <input type="text"  name="description" [(ngModel)]="newMessage.description">
   <button class="btn btn-primary" (click)="createMessage(newMessage, selected.id)">Submit</button> -->
-
 </div>
 
 <div *ngIf="!selected">
   <div id="eventPadding" *ngFor="let event of events" class="list-group">
-    <a (click)="displayEvent(event)" class="list-group-item list-group-item-action flex-column align-items-start active">
+    <a
+      (click)="displayEvent(event)"
+      class="list-group-item list-group-item-action flex-column align-items-start active"
+    >
       <div class="d-flex w-100 justify-content-between">
-        <h5 class="mb-1">{{event.name}}</h5>
-        <small>Event Created: {{event.createdDate | date: "MM/dd/yyyy"}}</small>
+        <h5 class="mb-1">{{ event.name }}</h5>
+        <small
+          >Event Created: {{ event.createdDate | date : "MM/dd/yyyy" }}</small
+        >
       </div>
-      <p class="mb-1">{{event.description}}</p>
-      <p>Start Date: {{event.startDate | date: "MM/dd/yyyy"}}</p>
-      <small>{{event.address.city}}, {{event.address.state}}</small>
+      <p class="mb-1">{{ event.description }}</p>
+      <p>Start Date: {{ event.startDate | date : "MM/dd/yyyy" }}</p>
+      <small>{{ event.address.city }}, {{ event.address.state }}</small>
     </a>
   </div>
 </div>
 
+<div *ngIf="selected" class="card-div">
+  <div class="card" style="width: 80%">
+    <img
+      class="card-img-top"
+      src="https://www.signupgenius.com/cms/socialMediaImages/beach-clean-up-tips-ideas-facebook-1200x630.png"
+      alt="Card image cap"
+    />
+    <div class="card-body">
+      <h5 class="card-title">{{ selected.name }}</h5>
+      <p class="card-text">{{ selected.description }}</p>
+      <p class="card-text">
+        Start: {{ selected.startDate | date : "MM/dd/yyyy hh:mm" }}
+      </p>
+      <p class="card-text">
+        End: {{ selected.endDate | date : "MM/dd/yyyy hh:mm" }}
+      </p>
+      <p class="card-text">{{ selected.address.street }}</p>
+      <p class="card-text">
+        {{ selected.address.city }}, {{ selected.address.state }}
+      </p>
+      <p class="card-text">{{ selected.address.zip }}</p>
+      <button
+        *ngIf="checkAdmin(selected)"
+        class="btn btn-info"
+        (click)="setEditEvent()"
+      >
+        Edit Event
+      </button>
+      <button
+        *ngIf="checkAdmin(selected)"
+        class="btn btn-info"
+        (click)="setEditEvent()"
+      >
+        Delete Event
+      </button>
+      <button
+        *ngIf="!checkParticipant()"
+        class="btn btn-info"
+        (click)="addParticipant(selected.id)"
+      >
+        Join Event
+      </button>
+      <button
+        *ngIf="checkParticipant()"
+        class="btn btn-info"
+        (click)="removeParticipant(selected.id)"
+      >
+        Leave Event
+      </button>
+    </div>
+    <div *ngIf="checkParticipant()">
+      <!-- <li *ngFor="let message of messages">{{message.description}}<button *ngIf="checkMessageOwner(message)"   (click)="deleteMessage(message.id)">Delete</button> -->
 
-<div *ngIf="selected" class="card" style="width: 80%;">
-  <img class="card-img-top" src="https://www.signupgenius.com/cms/socialMediaImages/beach-clean-up-tips-ideas-facebook-1200x630.png" alt="Card image cap">
-  <div class="card-body">
-    <h5 class="card-title">{{selected.name}}</h5>
-    <p class="card-text">{{selected.description}}</p>
-    <p class="card-text">Start: {{selected.startDate | date:"MM/dd/yyyy hh:mm"}}</p>
-    <p class="card-text">End: {{selected.endDate | date:"MM/dd/yyyy hh:mm"}}</p>
-    <p class="card-text">{{selected.address.street}}</p>
-    <p class="card-text">{{selected.address.city}}, {{selected.address.state}}</p>
-    <p class="card-text">{{selected.address.zip}}</p>
-    <button *ngIf="checkAdmin(selected)" class="btn btn-info" (click)="setEditEvent()">Edit Event</button>
-    <button *ngIf="checkAdmin(selected)" class="btn btn-info" (click)="setEditEvent()">Delete Event</button>
-    <button *ngIf="!checkParticipant()" class="btn btn-info" (click)="addParticipant(selected.id)">Join Event</button>
-    <button *ngIf="checkParticipant()" class="btn btn-info" (click)="removeParticipant(selected.id)">Leave Event</button>
-  </div>
-  <div *ngIf="checkParticipant()">
-    <!-- <li *ngFor="let message of messages">{{message.description}}<button *ngIf="checkMessageOwner(message)"   (click)="deleteMessage(message.id)">Delete</button> -->
-
-      <div *ngFor="let message of messages" class="toast" role="alert" aria-live="assertive" aria-atomic="true" autohide="false">
+      <div
+        *ngFor="let message of messages"
+        class="toast"
+        role="alert"
+        aria-live="assertive"
+        aria-atomic="true"
+        autohide="false"
+      >
         <div class="toast-header">
           <!-- <img src="..." class="rounded mr-2" alt="..."> -->
-          <strong class="mr-auto">{{message.user.firstName}} {{message.user.lastName}}</strong>
-          <small>{{message.datePosted}}</small>
-          <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
+          <strong class="mr-auto"
+            >{{ message.user.firstName }} {{ message.user.lastName }}</strong
+          >
+          <small>{{ message.datePosted }}</small>
+          <button
+            type="button"
+            class="ml-2 mb-1 close"
+            data-dismiss="toast"
+            aria-label="Close"
+          >
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
         <div class="toast-body">
-          {{message.description}}
+          {{ message.description }}
         </div>
       </div>
+    </div>
   </div>
 </div>
-
 
 <div *ngIf="editVolunteerevent">
   <form>
     <label class="form-label">Name</label>
-    <input class="form-control" type="text" name="name" [(ngModel)]="editVolunteerevent.name" ><br>
+    <input
+      class="form-control"
+      type="text"
+      name="name"
+      [(ngModel)]="editVolunteerevent.name"
+    /><br />
     <label class="form-label">Description</label>
-    <input class="form-control" type="text" name="description" [(ngModel)]="editVolunteerevent.description" ><br>
+    <input
+      class="form-control"
+      type="text"
+      name="description"
+      [(ngModel)]="editVolunteerevent.description"
+    /><br />
     <label class="form-label">Start Date</label>
-    <input class="form-control" type="datetime-local" name="startDate" [(ngModel)]="editVolunteerevent.startDate" ><br>
+    <input
+      class="form-control"
+      type="datetime-local"
+      name="startDate"
+      [(ngModel)]="editVolunteerevent.startDate"
+    /><br />
     <label class="form-label">End Date</label>
-    <input class="form-control" type="datetime-local" name="endDate" [(ngModel)]="editVolunteerevent.endDate" ><br>
+    <input
+      class="form-control"
+      type="datetime-local"
+      name="endDate"
+      [(ngModel)]="editVolunteerevent.endDate"
+    /><br />
     <label class="form-label">Street Address</label>
-    <input class="form-control" type="text" name="address" [(ngModel)]="editVolunteerevent.address.street" ><br>
+    <input
+      class="form-control"
+      type="text"
+      name="address"
+      [(ngModel)]="editVolunteerevent.address.street"
+    /><br />
     <label class="form-label">City</label>
-    <input class="form-control" type="text" name="city" [(ngModel)]="editVolunteerevent.address.city" ><br>
+    <input
+      class="form-control"
+      type="text"
+      name="city"
+      [(ngModel)]="editVolunteerevent.address.city"
+    /><br />
     <label class="form-label">State</label>
-    <input class="form-control" type="text" name="state" [(ngModel)]="editVolunteerevent.address.state" ><br>
+    <input
+      class="form-control"
+      type="text"
+      name="state"
+      [(ngModel)]="editVolunteerevent.address.state"
+    /><br />
     <label class="form-label">Zip Code</label>
-    <input class="form-control" type="text" name="zip" [(ngModel)]="editVolunteerevent.address.zip" ><br>
+    <input
+      class="form-control"
+      type="text"
+      name="zip"
+      [(ngModel)]="editVolunteerevent.address.zip"
+    /><br />
     <div class="d-grid gap-2">
-      <button type="button" class="btn btn-info" (click)="updateEvent(editVolunteerevent)">Save</button>
-      <button type="button" class="btn btn-info" (click)="editVolunteerevent = null">Cancel</button>
+      <button
+        type="button"
+        class="btn btn-info"
+        (click)="updateEvent(editVolunteerevent)"
+      >
+        Save
+      </button>
+      <button
+        type="button"
+        class="btn btn-info"
+        (click)="editVolunteerevent = null"
+      >
+        Cancel
+      </button>
     </div>
-
-</form>
+  </form>
 </div>
 
+<div class="chat-div">
+  <section *ngIf="selected && checkParticipant()" class="chat">
+    <div class="container py-5">
+      <div class="row">
+        <div class="col-md-6 col-lg-5 col-xl-4 mb-4 mb-md-0">
+          <h5 class="font-weight-bold mb-3 text-center text-lg-start">
+            Member
+          </h5>
 
-
-<section *ngIf="selected && checkParticipant()" style="background-color: #eee;">
-  <div class="container py-5">
-
-    <div class="row">
-
-      <div class="col-md-6 col-lg-5 col-xl-4 mb-4 mb-md-0">
-
-        <h5 class="font-weight-bold mb-3 text-center text-lg-start">Member</h5>
-
-        <div class="card">
-          <div class="card-body">
-
-            <ul class="list-unstyled mb-0" *ngFor="let member of selected.participants">
-              <li class="p-2 border-bottom">
-                <a href="#!" class="d-flex justify-content-between">
-                  <div class="d-flex flex-row">
-                    <img src={{member.user.imgUrl}} alt="avatar"
-                      class="rounded-circle d-flex align-self-center me-3 shadow-1-strong" width="60">
-                    <div class="pt-1">
-                      <p class="fw-bold mb-0">{{member.user.firstName}} {{member.user.lastName}}</p>
-                      <p class="small text-muted">{{member.user.role}}</p>
+          <div class="card">
+            <div class="card-body">
+              <ul
+                class="list-unstyled mb-0"
+                *ngFor="let member of selected.participants"
+              >
+                <li class="p-2 border-bottom">
+                  <a href="#!" class="d-flex justify-content-between">
+                    <div class="d-flex flex-row">
+                      <img
+                        src="{{ member.user.imgUrl }}"
+                        alt="avatar"
+                        class="rounded-circle d-flex align-self-center me-3 shadow-1-strong"
+                        width="60"
+                      />
+                      <div class="pt-1">
+                        <p class="fw-bold mb-0">
+                          {{ member.user.firstName }} {{ member.user.lastName }}
+                        </p>
+                        <p class="small text-muted">{{ member.user.role }}</p>
+                      </div>
                     </div>
-                  </div>
-                  <div class="pt-1">
-                    <!-- <p class="small text-muted mb-1">{{member.dateJoined | date:"MM/dd/yyyy"}}</p> -->
-                  </div>
-                </a>
-              </li>
-            </ul>
-
+                    <div class="pt-1">
+                      <!-- <p class="small text-muted mb-1">{{member.dateJoined | date:"MM/dd/yyyy"}}</p> -->
+                    </div>
+                  </a>
+                </li>
+              </ul>
+            </div>
           </div>
         </div>
 
-      </div>
-
-      <div class="col-md-6 col-lg-7 col-xl-8">
-
-        <ul class="list-unstyled">
-          <li class="d-flex justify-content-between mb-4" *ngFor="let message of messages">
-            <img src="{{message.user.imgUrl}}" alt="avatar"
-              class="rounded-circle d-flex align-self-start me-3 shadow-1-strong" width="60">
-            <div class="card">
-              <div class="card-header d-flex justify-content-between p-3">
-                <p class="fw-bold mb-0">{{message.user.firstName}} {{message.user.lastName}}</p>
-                <p class="text-muted small mb-0"><i class="far fa-clock"></i> {{message.datePosted | date:"MM/dd/yyyy"}}</p>
+        <div class="col-md-6 col-lg-7 col-xl-8">
+          <ul class="list-unstyled">
+            <li
+              class="d-flex justify-content-between mb-4"
+              *ngFor="let message of messages"
+            >
+              <img
+                src="{{ message.user.imgUrl }}"
+                alt="avatar"
+                class="rounded-circle d-flex align-self-start me-3 shadow-1-strong"
+                width="60"
+              />
+              <div class="card">
+                <div class="card-header d-flex justify-content-between p-3">
+                  <p class="fw-bold mb-0">
+                    {{ message.user.firstName }} {{ message.user.lastName }}
+                  </p>
+                  <p class="text-muted small mb-0">
+                    <i class="far fa-clock"></i>
+                    {{ message.datePosted | date : "MM/dd/yyyy" }}
+                  </p>
+                </div>
+                <div class="card-body">
+                  <p class="mb-0">
+                    {{ message.description }}
+                  </p>
+                </div>
               </div>
-              <div class="card-body">
-                <p class="mb-0">
-                  {{message.description}}
-                </p>
+            </li>
+            <li class="bg-white mb-3">
+              <div class="form-outline">
+                <textarea
+                  class="form-control"
+                  id="textAreaExample2"
+                  rows="4"
+                  name="description"
+                  [(ngModel)]="newMessage.description"
+                ></textarea>
               </div>
-            </div>
-          </li>
-          <li class="bg-white mb-3">
-            <div class="form-outline">
-              <textarea class="form-control" id="textAreaExample2" rows="4" name="description" [(ngModel)]="newMessage.description"></textarea>
-            </div>
-          </li>
-          <button type="button" class="btn btn-info btn-rounded float-end" (click)="createMessage(newMessage, selected.id)">Send</button>
-        </ul>
-
+            </li>
+            <button
+              type="button"
+              class="btn btn-info btn-rounded float-end"
+              (click)="createMessage(newMessage, selected.id)"
+            >
+              Send
+            </button>
+          </ul>
+        </div>
       </div>
-
     </div>
-
-  </div>
-</section>
-
-
-
-
+  </section>
+</div>

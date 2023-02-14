@@ -82,7 +82,7 @@ export class VolunteereventComponent implements OnInit {
     this.volunteerEventService.index().subscribe({
       next: (events) => {
         this.events = events;
-        console.log(this.events);
+
       },
       error: (oof) => {
         console.error('Error loading events:');
@@ -149,9 +149,7 @@ export class VolunteereventComponent implements OnInit {
     let found = false;
     if (this.user && this.selected) {
       for (let member of this.selected.participants) {
-        console.log(member);
-        console.log(this.user);
-        console.log(this.selected);
+
         if (member.user.id === this.user.id) {
           found = true;
           break;
@@ -176,9 +174,9 @@ export class VolunteereventComponent implements OnInit {
     if (this.checkLogIn() ) {
       this.auth.getLoggedInUser().subscribe({
         next: (loggedInUser) => {
-          console.log(loggedInUser);
+
           this.user = loggedInUser;
-          console.log(this.user);
+
         },
         error: () => {
 

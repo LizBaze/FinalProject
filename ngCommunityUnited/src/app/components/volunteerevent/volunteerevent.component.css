@@ -6,3 +6,24 @@
   background-color: #225c8f;
   /* color: black; */
 }
+
+.card-div{
+  justify-content: center;
+  display: flex;
+}
+
+.chat {
+  width: 80%;
+  background-color: #eee;
+  display:flex;
+  justify-content: center;
+}
+
+.chat-div {
+  display: flex;
+  justify-content: center;
+}
+
+.btn {
+  margin: 5px;
+}
