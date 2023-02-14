@@ -38,7 +38,6 @@ We placed the @JsonIgnoreProperties in User, VolunteerEvent, Participant, Organi
 
 Another JPA mapping that our team was no so familiar with was the Compossite Primary Key Mapping. We leanred that when we have an entity table that only consists of having multiple primary keys instead of just one primary key, we would have to join the tables differently. 
 
->Example: 
  ![image](https://user-images.githubusercontent.com/113270980/218830133-7cd2c2fd-23b5-4439-8c9e-ae10ce826630.png)
  <img width="109" alt="Screen Shot 2023-02-08 at 4 19 00 PM" src="https://user-images.githubusercontent.com/113270980/218830399-d5232b36-b0d8-44d9-9214-61159c922bb3.png">
  ![image](https://user-images.githubusercontent.com/113270980/218830540-8dd8c83d-048c-458a-92b7-a852c8286054.png)
