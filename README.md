@@ -1,14 +1,43 @@
 # Our Final Project
 ![community united (1)](https://user-images.githubusercontent.com/113270980/218788432-69d7155f-6eee-460b-840c-a4f428c09b5a.png)
 
-
 # Overview 
+Community United project is a volunteer site that promotes people from any community to join in volunteering events near them. Volunteering allows the public to connect to their communities and make it a better place. Even helping out with the smallest tasks can mean a real difference to the lives of people and organizations in need. 
+
+The developers on this team were given a 9 day sprint to implement frontend and backend features onto the project in the most efficient way possible. 
+
+### Events
+When a user is first entering the site, they are welcomed to browse through all the events that are currently going on. They will be presented by a list of posts that give a title and a quick description of what the event is about. When a user clicks on a post, they are able to see the start and end date of the event, as well as the location that the event will be taking place. A button called join event will appear if the user wishes to join as a participant in the event. Before a user can join an event, they must register an account and sign in. If a user is unable to make it to the event, there is a leave event option for them to choose.
+
+### Organizations
+In the organization section, the user is prompted with a list of organizations they can be a part of. If a user is interested in starting an organization that they think would benefit the community, they can register an account and create an organization of their liking. The one that creates an organization will be an admin and will have permission to post volunteering events. 
+
+## Group Messaging
+Creating a social aspect in our project was vital as we understand that if the community were able to communicate with each other, then it will bring more awareness for more people to get involved and as a bonus create long lasting friendships within the community. When a user has an account, they will be able to join a volunteering event. Upon joining they will be entered into a group message chat involving all the members that will be attending that volunteering event. So if any members have any ideas or concerns about the event, they will be able to communicate with each other via chat. If a user would like to delete their message they will also be able to do so. 
+
+### User
+
+The user has different permission levels when they register. If a user is just registering as a volunteer participant, then they will not be able to edit or create events. But any user can create an organization. As a participant, the user is able to join as many events as they would like, they can also choose to leave an event if they decide too.
+
+If a user is an admin member of the organization, they may choose to create as many events as they would like, espeiclaly as a gallery of photos of the event.
+
+When the user creates an organization, they will automatically become an admin member where they will be allowed to create their own events as well as edit the event. 
+
+When registering an account, the user will have their own account they can view and edit to add a more personalized touch to their account.
+
 
 # Database Schema
 ![image](https://user-images.githubusercontent.com/113270980/218789044-2dd311f3-9f6f-4e91-93d8-c0aa0239c10b.png)
 
 
 # Lesson Learned 
+One of the lessons that the team learned early on was json recursion. Learning to utilize @JsonIgnoreProperties appropriately in our entities was very important as we had a lot of recursion happening. @JsonIgnoreProperties is a class-level annotation that marks a property or a list of properties that Json will ignore when read during deserialization. 
+
+ >Example: 
+We placed the @JsonIgnoreProperties in User, VolunteerEvent, Participant, Organization and Member Entities. 
+
+
+
 
 # Technologies Used
 - Java
