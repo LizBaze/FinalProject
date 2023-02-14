@@ -11,8 +11,44 @@
 # Lesson Learned 
 
 # Technologies Used
+- Java
+- MySQL / MYSQL workbench
+- JPA
+- REST API
+- JPA
+- Gradle
+- XML
+- JavaScript
+- TypeScript
+- JSON
+- Angular
+- MAMP
+- Tomcat 
+- AWS
+- HTML
+- CSS
+- Bootstrap
+- Visual Code Studio
+- SpringToolSuite4
+- PostMan
+
 
 # Our Team
+## Liz Base 
+### Software Developer | GitHub Repository Owner 
+### https://github.com/LizBaze
+## Casey Froehlich
+### Software Developer | Database Administator 
+### https://github.com/CaseyFroehlich7
+## John Nichols
+### Software Developer | Scrum Master
+### https://github.com/jtn0113
+## Pamela Leon
+### Software Developer
+### https://github.com/pamelaleon
+
+
+
 
 # REST API Mappings
 
@@ -47,6 +83,24 @@
 | GET       | `/api/volunteerevents/1` | | Retrieves a volunteer event by id |
 | POST       | `/api/organizations/1/volunteerevents` |  Request's a new version of volunteer events by organization id | Generates a new volunteer event into the database |
 | PUT    | `/api/volunteerevents/1` |  Request's a new version of volunteer event           | Updated volunteer event information into the database|
+
+## Participant Entity
+
+| HTTP Verb | URI                  | Request Body | Response Body |
+|-----------|----------------------|--------------|---------------|
+| POST      | `/api/participants/1`    |  Request's the user by email to be added as a participant   | Generates a new participant for that volunteer event
+| DELETE      | `/api/volunteerevents/1/users` | | Removes participant from the volunteer event |
+
+
+## Group Message Entity 
+
+| HTTP Verb | URI                  | Request Body | Response Body |
+|-----------|----------------------|--------------|---------------|
+| GET       | `/api/volunteerevents/1/groupmessages`    |               | Retrieves a collection of all group messages by volunteer event id
+| POST       | `/api/volunteerevents/1/groupmessages` | Request's the user by email and the volunteer event by id| | Generates a new group message by user to that volunteer event into the database
+| DELETE      | `/api/groupmessages/1` | | Deletes a group message by id |
+
+
 
 
 
