@@ -21,9 +21,10 @@
 | HTTP Verb | URI                  | Request Body | Response Body |
 |-----------|----------------------|--------------|---------------|
 | GET       | `/api/authenticate`    |               | Authenticates user email and password when logging in
-| POST       | `/api/register` | Request the new user's information     | Generates a new user when registering into the database |
+| POST       | `/api/register` | Request's the new user's information     | Generates a new user when registering into the database |
 | PUT       | `/api/user/1` |  Request's a new version of the user | Updated user's information to the database |
 | DELETE    | `/api/user/1` |              | Deleted the user from the database|
+
 
 ## Organization Entity
 
@@ -32,10 +33,20 @@
 | GET       | `/api/organizations`    |               | Retrieves a collection of all exsisting organizations
 | GET       | `/api/organizations/1/users/1` |    | Retrieves a boolean to check whether a user is an admin for that organization|
 | GET       | `/api/organizations/1` |  Retreives an organization by id |
-| POST    | `/api/organizations` | Request of a new organization while user is logged in            | Generates a new organization into the database|
+| POST    | `/api/organizations` | Request's a new organization while user is logged in            | Generates a new organization into the database|
 | POST       | `/api/organizations/1/users` |  Retreives organization by id and user by email | Add's the user as a member to the organization  |
-| PUT       | `/api/organizations/1` |  Request of a new version of an organization | Updated organization information to the database
+| PUT       | `/api/organizations/1` |  Request's a new version of an organization | Updated organization information to the database
 | DELETE       | `/api/organizations/1/users` |   |  Removes user by email from organization id        |
+
+
+## Volunteer Event Entity
+
+| HTTP Verb | URI                  | Request Body | Response Body |
+|-----------|----------------------|--------------|---------------|
+| GET       | `/api/volunteerevents`    |               | Retrieves a collection of all exsisting volunteer events
+| GET       | `/api/volunteerevents/1` | | Retrieves a volunteer event by id |
+| POST       | `/api/organizations/1/volunteerevents` |  Request's a new version of volunteer events | Generates a new volunteer event into the database |
+| PUT    | `/api/volunteerevents/1` |  Request's a new version of volunteer event            | Updated volunteer event information into the database|
 
 
 
