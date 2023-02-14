@@ -56,5 +56,15 @@
 | DELETE      | `/api/volunteerevents/1/users` | | Removes participant from the volunteer event |
 
 
+## Group Message Entity 
+
+| HTTP Verb | URI                  | Request Body | Response Body |
+|-----------|----------------------|--------------|---------------|
+| GET       | `/api/volunteerevents/1/groupmessages`    |               | Retrieves a collection of all group messages by volunteer event id
+| POST       | `/api/volunteerevents/1/groupmessages` | Request's the user by email and the volunteer event by id| | Generates a new group message by user to that volunteer event into the database
+| DELETE      | `/api/groupmessages/1` | | Deletes a group message by id |
+
+
+
 
 
