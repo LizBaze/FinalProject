@@ -12,6 +12,11 @@
   padding: 5px;
 }
 
+img {
+  height: auto;
+  width: 200px;
+}
+
 .container {
   margin:15px;
   padding:15px;

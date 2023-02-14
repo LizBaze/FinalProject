@@ -22,6 +22,7 @@
 
 <div *ngIf="selectedOrganization && !editOrganization && !newOrganization" class="card" style="width: 80%;">
   <img *ngIf="selectedOrganization.logo" class="card-img-top" src={{selectedOrganization.logo}} alt="Card image cap">
+  <img *ngIf="!selectedOrganization.logo" class="card-img-top" src="https://www.pngkey.com/png/detail/359-3593914_volunteer-opportunities-volunteer-logo.png" alt="Card image cap">
   <div class="card-body">
     <h5 class="card-title">{{selectedOrganization.name}}</h5>
     <p class="card-text">{{selectedOrganization.description}}</p>

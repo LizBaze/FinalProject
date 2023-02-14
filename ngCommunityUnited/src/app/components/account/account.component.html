@@ -13,7 +13,7 @@
 
 <div *ngIf="user && !editUser" class="container">
   <div class="">
-    <img src="{{user?.imgUrl}}" alt="">
+    <img *ngIf="user.imgUrl" src="{{user.imgUrl}}" alt="">
   </div>
 
   <div class="">
@@ -37,7 +37,8 @@
 </div>
  <div *ngIf="user" class="container grid-container">
 <div *ngFor="let member of user.members" class="grid-item">
-  <img src="{{member.organization.logo}}" alt="">
+  <img *ngIf="member.organization.logo" src="{{member.organization.logo}}" alt="">
+  <img *ngIf="!member.organization.logo" src="https://www.pngkey.com/png/detail/359-3593914_volunteer-opportunities-volunteer-logo.png" alt="">
   <br>
   {{member.organization.name}}
 </div>
