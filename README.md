@@ -19,6 +19,8 @@ Creating a social aspect in our project was vital as we understand that if the c
 
 The user has different permission levels when they register. If a user is just registering as a volunteer participant, then they will not be able to edit or create events. But any user can create an organization. As a participant, the user is able to join as many events as they would like, they can also choose to leave an event if they decide too.
 
+If a user is an admin member of the organization, they may choose to create as many events as they would like, espeiclaly as a gallery of photos of the event.
+
 When the user creates an organization, they will automatically become an admin member where they will be allowed to create their own events as well as edit the event. 
 
 When registering an account, the user will have their own account they can view and edit to add a more personalized touch to their account.
@@ -29,6 +31,13 @@ When registering an account, the user will have their own account they can view 
 
 
 # Lesson Learned 
+One of the lessons that the team learned early on was json recursion. Learning to utilize @JsonIgnoreProperties appropriately in our entities was very important as we had a lot of recursion happening. @JsonIgnoreProperties is a class-level annotation that marks a property or a list of properties that Json will ignore when read during deserialization. 
+
+ >Example 
+We placed the @JsonIgnoreProperties in User, VolunteerEvent, Participant, Organization and Member Entities. 
+
+
+
 
 # Technologies Used
 - Java
