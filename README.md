@@ -19,7 +19,7 @@ Creating a social aspect in our project was vital as we understand that if the c
 
 The user has different permission levels when they register. If a user is just registering as a volunteer participant, then they will not be able to edit or create events. But any user can create an organization. As a participant, the user is able to join as many events as they would like, they can also choose to leave an event if they decide too.
 
-If a user is an admin member of the organization, they may choose to create as many events as they would like, espeiclaly as a gallery of photos of the event.
+If a user is an admin member of the organization, they may choose to create as many events as they would like and be able to add a photo.
 
 When the user creates an organization, they will automatically become an admin member where they will be allowed to create their own events as well as edit the event. 
 
