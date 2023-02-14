@@ -50,15 +50,28 @@ public class VolunteerEvent {
 	@JsonIgnoreProperties({"volunteerEvent"})
 	private List<Participant> participants;
 	
+	@OneToMany(mappedBy="volunteerEvent")
+	private List<EventImg> eventImages;
+	
 	public VolunteerEvent() {
 		super();
 	}
 
-	
+
+
+	@Override
+	public String toString() {
+		return "VolunteerEvent [id=" + id + ", name=" + name + ", description=" + description + ", createdDate="
+				+ createdDate + ", startDate=" + startDate + ", endDate=" + endDate + ", organization=" + organization
+				+ ", address=" + address + ", causes=" + causes + ", participants=" + participants + ", eventImages="
+				+ eventImages + "]";
+	}
+
+
 
 	public VolunteerEvent(int id, String name, String description, LocalDateTime createdDate, LocalDateTime startDate,
 			LocalDateTime endDate, Organization organization, Address address, List<Cause> causes,
-			List<Participant> participants) {
+			List<Participant> participants, List<EventImg> eventImages) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -70,6 +83,7 @@ public class VolunteerEvent {
 		this.address = address;
 		this.causes = causes;
 		this.participants = participants;
+		this.eventImages = eventImages;
 	}
 
 
@@ -162,6 +176,18 @@ public class VolunteerEvent {
 
 	public void setParticipants(List<Participant> participants) {
 		this.participants = participants;
+	}
+
+
+
+	public List<EventImg> getEventImages() {
+		return eventImages;
+	}
+
+
+
+	public void setEventImages(List<EventImg> eventImages) {
+		this.eventImages = eventImages;
 	}
 
 

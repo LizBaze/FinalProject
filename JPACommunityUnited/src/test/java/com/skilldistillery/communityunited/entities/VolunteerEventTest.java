@@ -63,6 +63,12 @@ class VolunteerEventTest {
 		assertTrue(volunteerEvent.getCauses().size() > 0);
 		assertTrue(volunteerEvent.getParticipants().size() > 0);
 	}
+	
+	@Test
+	void test_Img_mapping() {
+		assertTrue(volunteerEvent.getEventImages().size() > 0);
+	
+	}
 }
 
 

@@ -154,6 +154,7 @@ export class OrganizationService {
   }
 
   createVolunteerevent(volunteerevent: Volunteerevent, oid: number): Observable<Volunteerevent> {
+    console.log(volunteerevent)
     return this.http.post<Volunteerevent>(this.url + 'api/organizations/' + oid + '/volunteerevents/', volunteerevent, this.getHttpOptions()).pipe(
       catchError((err: any) => {
         console.log(err);

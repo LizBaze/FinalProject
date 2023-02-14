@@ -6,9 +6,11 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.skilldistillery.communityunited.entities.EventImg;
 import com.skilldistillery.communityunited.entities.Organization;
 import com.skilldistillery.communityunited.entities.VolunteerEvent;
 import com.skilldistillery.communityunited.repositories.AddressRepository;
+import com.skilldistillery.communityunited.repositories.EventImgRepository;
 import com.skilldistillery.communityunited.repositories.OrganizationRepository;
 import com.skilldistillery.communityunited.repositories.VolunteerEventRepository;
 
@@ -23,16 +25,28 @@ public class VolunteerEventServiceImpl implements VolunteerEventService {
 	
 	@Autowired
 	private AddressRepository addressRepo;
+	
+	@Autowired
+	private EventImgRepository imgRepo;
 
 	@Override
 	public VolunteerEvent create(VolunteerEvent event, int id) {
-		Optional<VolunteerEvent> newEvent = volunteerEventRepo.findById(event.getId());
+//		Optional<VolunteerEvent> newEvent = volunteerEventRepo.findById(event.getId());
 		Optional<Organization> org = orgRepo.findById(id);
 		
-		if(!newEvent.isPresent() && org.isPresent()) {
+		if(org.isPresent()) {
 			event.setAddress(addressRepo.saveAndFlush(event.getAddress()));
+			
 			event.setOrganization(org.get());
-			volunteerEventRepo.saveAndFlush(event);
+			
+			event = volunteerEventRepo.saveAndFlush(event);
+			
+			if(event.getEventImages().size() > 0)  {
+				EventImg img = event.getEventImages().get(0);
+				img.setVolunteerEvent(event);
+				
+				imgRepo.saveAndFlush(img);
+			}
 			return event;
 		}
 		
