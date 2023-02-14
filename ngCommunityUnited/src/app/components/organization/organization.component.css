@@ -20,3 +20,13 @@
   width: 80%;
 
 }
+
+.org {
+  display: flex;
+  justify-content: center;
+}
+
+.width {
+  display: flex;
+  justify-content: center;
+}

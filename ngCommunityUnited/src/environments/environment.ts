@@ -1,4 +1,4 @@
 export const environment = {
 
-  baseUrl: '/JPACommunityUnited/'
+  baseUrl: '/CommunityUnited/'
 };

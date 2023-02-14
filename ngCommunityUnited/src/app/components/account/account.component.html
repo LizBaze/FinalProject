@@ -19,7 +19,7 @@
   <div class="">
     <h3>Name: {{user.firstName}} {{user.lastName}}</h3>
     <p>About Me: {{user.bio}}</p>
-    <div>
+    <div *ngIf="user.address">
       Address:
       <br>
       {{user.address.street}}

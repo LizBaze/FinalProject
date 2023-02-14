@@ -34,6 +34,7 @@ export class AccountComponent {
       this.auth.updateUser(this.editUser).subscribe({
         next: (user: User) => {
           this.editUser = null;
+          this.getUser();
         },
         error: () => {},
       });

@@ -11,7 +11,7 @@ export class User {
   imgUrl: string;
   enabled: boolean;
   bio: string;
-  address: Address;
+  address: Address | null;
 
   members: Member[];
 
@@ -26,7 +26,7 @@ export class User {
     enabled: boolean = false,
     bio: string = '',
     members: Member[] = [],
-    address: Address = new Address()
+    address: Address | null = null
   ) {
     this.id = id;
     this.firstName = firstName;
