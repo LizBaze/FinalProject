@@ -22,8 +22,7 @@
 |-----------|----------------------|--------------|---------------|
 | GET       | `/api/authenticate`    |               | Authenticates user email and password when logging in
 | POST       | `/api/register` | Request the new user's information     | Generates a new user when registering into the database |
-| POST      | `/api/dogprofiles`    | JSON of a new `DogProfile` | JSON of created `DogProfile` |
-| PUT       | `/api/dogprofiles/2` | JSON of a new version of `DogProfile` 2 | JSON of updated `DogProfile` |
-| DELETE    | `/api/dogprofiles/2` |              | |
+| PUT       | `/api/user/1` |  Request's a new version of the user | Updated user's information to the database |
+| DELETE    | `/api/user/1` |              | Deleted the user from the database|
 
 
