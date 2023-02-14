@@ -31,8 +31,8 @@
     <button class="btn btn-info" (click)="selectedOrganization = null">Back</button>
   </div>
 </div>
-
-<form *ngIf="editOrganization">
+<div class="container">
+<form *ngIf="editOrganization" class="form">
   <div class="row">
     <label class="col form-label" for="lastName">Logo</label>
     <input
@@ -62,15 +62,17 @@
     <button class="btn btn-info" (click)="editOrganization = null">Cancel</button>
   </div>
 </form>
+</div>
 
-<form *ngIf="newOrganization">
+
+<div class="container">
+<form *ngIf="newOrganization" class="form">
   <div class="row">
     <label class="col form-label" for="name">Name</label>
     <input
       class="form-control"
       type="text"
       name="name"
-      placeholder="name"
       [(ngModel)]="newOrganization.name"
       required
     />
@@ -105,11 +107,12 @@
     <button class="btn btn-info" (click)="newOrganization = null">Cancel</button>
   </div>
 </form>
+</div>
 
 
 <div *ngIf="selectedOrganization">
   <button class="btn btn-info" (click)="newEvent()" *ngIf="checkAdmin()">Add New Event</button>
-  <form *ngIf="newVolunteerevent">
+  <form *ngIf="newVolunteerevent" class="form">
     <label class="form-label">Name</label>
     <input class="form-control" type="text" name="name" [(ngModel)]="newVolunteerevent.name" ><br>
     <label class="form-label">Description</label>
@@ -126,7 +129,8 @@
     <input class="form-control" type="text" name="state" [(ngModel)]="newVolunteerevent.address.state" ><br>
     <label class="form-label">Zip Code</label>
     <input class="form-control" type="text" name="zip" [(ngModel)]="newVolunteerevent.address.zip" ><br>
-    <input *ngIf="newEventImage" type="text" name="eventImg" id="" [(ngModel)]="newEventImage.imgUrl">
+    <label class="form-label">Image Url</label>
+    <input class="form-control" *ngIf="newEventImage" type="text" name="eventImg" id="" [(ngModel)]="newEventImage.imgUrl">
     <div class="d-grid gap-2">
       <button type="button" class="btn btn-info" (click)="createVolunteerevent(newVolunteerevent)">Create</button>
       <!-- <button type="button" class="btn btn-primary" (click)="changeAddLocationSelected()">Cancel</button> -->

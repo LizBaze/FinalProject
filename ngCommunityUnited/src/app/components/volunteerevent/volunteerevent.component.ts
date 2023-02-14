@@ -22,6 +22,7 @@ export class VolunteereventComponent implements OnInit {
   newVolunteerevent: Volunteerevent = new Volunteerevent();
   editVolunteerevent: Volunteerevent | null = null;
   user: User | null = null;
+  eventImg: string = '';
 
   newMessage: GroupMessage = new GroupMessage();
 
@@ -68,21 +69,29 @@ export class VolunteereventComponent implements OnInit {
 
   displayEvent(volunteerevent: Volunteerevent | null) {
     this.selected = volunteerevent;
-    if(this.selected){
+    if (volunteerevent) {
+      if (volunteerevent.eventImages[0].imgUrl !== null) {
+        this.eventImg = volunteerevent.eventImages[0].imgUrl;
+      } else {
+        this.eventImg =
+          'https://www.unioncloud.org/assets/default/default_volunteering.jpg';
+      }
+      console.log(this.eventImg);
+    }
+    if (this.selected) {
       this.reloadMessage(this.selected.id);
-
     }
   }
 
   displayAllEvents() {
     this.selected = null;
+    this.eventImg = '';
   }
 
   reload() {
     this.volunteerEventService.index().subscribe({
       next: (events) => {
         this.events = events;
-
       },
       error: (oof) => {
         console.error('Error loading events:');
@@ -94,7 +103,7 @@ export class VolunteereventComponent implements OnInit {
     this.volunteerEventService.show(id).subscribe({
       next: (volunteerevent) => {
         this.selected = volunteerevent;
-      }
+      },
     });
   }
 
@@ -121,7 +130,7 @@ export class VolunteereventComponent implements OnInit {
     });
   }
 
-  addParticipant(id: number){
+  addParticipant(id: number) {
     this.partService.addParticipant(id).subscribe({
       next: (addedParticipant: Participant) => {
         this.show(id);
@@ -129,11 +138,11 @@ export class VolunteereventComponent implements OnInit {
       },
       error: (err) => {
         console.error(err);
-      }
-    })
+      },
+    });
   }
 
-  removeParticipant(id: number){
+  removeParticipant(id: number) {
     this.partService.removeParticipant(id).subscribe({
       next: () => {
         this.show(id);
@@ -141,15 +150,14 @@ export class VolunteereventComponent implements OnInit {
       },
       error: (err: any) => {
         console.error(err);
-      }
-    })
+      },
+    });
   }
 
-  checkParticipant(){
+  checkParticipant() {
     let found = false;
     if (this.user && this.selected) {
       for (let member of this.selected.participants) {
-
         if (member.user.id === this.user.id) {
           found = true;
           break;
@@ -160,26 +168,26 @@ export class VolunteereventComponent implements OnInit {
     return found;
   }
 
-  checkAdmin(event: Volunteerevent){
+  checkAdmin(event: Volunteerevent) {
     for (let member of event.organization.members) {
-      if (this.user && member.user.id === this.user.id && member.admin === true) {
+      if (
+        this.user &&
+        member.user.id === this.user.id &&
+        member.admin === true
+      ) {
         return true;
       }
-
+    }
+    return false;
   }
-  return false;
-}
 
   getUser() {
-    if (this.checkLogIn() ) {
+    if (this.checkLogIn()) {
       this.auth.getLoggedInUser().subscribe({
         next: (loggedInUser) => {
-
           this.user = loggedInUser;
-
         },
         error: () => {
-
           console.error('not logged In');
         },
       });
@@ -194,52 +202,48 @@ export class VolunteereventComponent implements OnInit {
     }
   }
 
-  reloadMessage(id: number){
+  reloadMessage(id: number) {
     this.messageService.reload(id).subscribe({
       next: (messages: GroupMessage[]) => {
         this.messages = messages;
       },
       error: (err) => {
         console.log(err);
-      }
-    })
+      },
+    });
   }
 
-  createMessage(message: GroupMessage, id: number){
+  createMessage(message: GroupMessage, id: number) {
     this.messageService.createMessage(message, id).subscribe({
-      next: (message: GroupMessage)=>{
-        if(this.selected){
+      next: (message: GroupMessage) => {
+        if (this.selected) {
           this.reloadMessage(this.selected.id);
           this.newMessage = new GroupMessage();
         }
       },
-      error: (err)=>{
+      error: (err) => {
         console.log(err);
-      }
-    })
+      },
+    });
   }
 
-  deleteMessage(id: number){
+  deleteMessage(id: number) {
     this.messageService.deleteMessage(id).subscribe({
       next: (deletedMessage) => {
-        if(this.selected){
+        if (this.selected) {
           this.reloadMessage(this.selected.id);
         }
       },
-      error:(err) => {
+      error: (err) => {
         console.log(err);
-      }
-    })
+      },
+    });
   }
 
-
-  checkMessageOwner(message: GroupMessage){
-     if(this.user && message.user.id === this.user.id){
-        return true;
-     }
-     return false;
-
+  checkMessageOwner(message: GroupMessage) {
+    if (this.user && message.user.id === this.user.id) {
+      return true;
+    }
+    return false;
   }
-
-
 }
