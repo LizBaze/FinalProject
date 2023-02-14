@@ -33,7 +33,7 @@ When registering an account, the user will have their own account they can view 
 # Lesson Learned 
 One of the lessons that the team learned early on was json recursion. Learning to utilize @JsonIgnoreProperties appropriately in our entities was very important as we had a lot of recursion happening. @JsonIgnoreProperties is a class-level annotation that marks a property or a list of properties that Json will ignore when read during deserialization. 
 
- >Example 
+ >Example: 
 We placed the @JsonIgnoreProperties in User, VolunteerEvent, Participant, Organization and Member Entities. 
 
 
