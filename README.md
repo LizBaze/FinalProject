@@ -5,6 +5,8 @@
 # Overview 
 
 # Database Schema
+![image](https://user-images.githubusercontent.com/113270980/218789044-2dd311f3-9f6f-4e91-93d8-c0aa0239c10b.png)
+
 
 # Lesson Learned 
 
@@ -13,4 +15,5 @@
 # Our Team
 
 # REST API Mappings
+
 
