@@ -34,6 +34,17 @@
 
 
 # Our Team
+## Liz Base 
+### Software Developer | GitHub Repository Owner 
+## Casey Froehlich
+### Software Developer | Database Administator 
+## John Nichols
+### Software Developer | Scrum Master
+## Pamela Leon
+### Software Developer
+
+
+
 
 # REST API Mappings
 
