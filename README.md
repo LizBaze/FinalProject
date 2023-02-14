@@ -16,9 +16,11 @@
 
 # REST API Mappings
 
+## Authentication Entity 
+
 | HTTP Verb | URI                  | Request Body | Response Body |
 |-----------|----------------------|--------------|---------------|
-| GET       | `/api/dogprofiles`    |              | JSON of `List<DogProfiles>` |
+| GET       | `/api/authenticate`    |               | Authenticates user email and password when logging in
 | GET       | `/api/dogprofiles/2` |              | JSON of `DogProfile` 2 |
 | POST      | `/api/dogprofiles`    | JSON of a new `DogProfile` | JSON of created `DogProfile` |
 | PUT       | `/api/dogprofiles/2` | JSON of a new version of `DogProfile` 2 | JSON of updated `DogProfile` |
