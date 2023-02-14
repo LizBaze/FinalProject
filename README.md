@@ -45,8 +45,8 @@
 |-----------|----------------------|--------------|---------------|
 | GET       | `/api/volunteerevents`    |               | Retrieves a collection of all exsisting volunteer events
 | GET       | `/api/volunteerevents/1` | | Retrieves a volunteer event by id |
-| POST       | `/api/organizations/1/volunteerevents` |  Request's a new version of volunteer events | Generates a new volunteer event into the database |
-| PUT    | `/api/volunteerevents/1` |  Request's a new version of volunteer event            | Updated volunteer event information into the database|
+| POST       | `/api/organizations/1/volunteerevents` |  Request's a new version of volunteer events by organization id | Generates a new volunteer event into the database |
+| PUT    | `/api/volunteerevents/1` |  Request's a new version of volunteer event           | Updated volunteer event information into the database|
 
 
 
