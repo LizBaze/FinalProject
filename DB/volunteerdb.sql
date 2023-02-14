@@ -419,7 +419,7 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `volunteerdb`;
-INSERT INTO `event_img` (`id`, `img_url`, `caption`, `volunteer_event_id`) VALUES (1, NULL, 'teaching english', 1);
+INSERT INTO `event_img` (`id`, `img_url`, `caption`, `volunteer_event_id`) VALUES (1, 'https://www.volunteerhq.org/images/pages/project_type_teaching_social.png', 'teaching english', 1);
 
 COMMIT;
 
