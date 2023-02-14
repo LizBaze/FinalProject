@@ -36,12 +36,16 @@
 # Our Team
 ## Liz Base 
 ### Software Developer | GitHub Repository Owner 
+### https://github.com/LizBaze
 ## Casey Froehlich
 ### Software Developer | Database Administator 
+### https://github.com/CaseyFroehlich7
 ## John Nichols
 ### Software Developer | Scrum Master
+### https://github.com/jtn0113
 ## Pamela Leon
 ### Software Developer
+### https://github.com/pamelaleon
 
 
 
