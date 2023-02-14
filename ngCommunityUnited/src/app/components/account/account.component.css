@@ -1,0 +1,15 @@
+.card-img-top {
+  height: auto;
+  width: 400px;
+}
+
+.card {
+  width: 400px;
+}
+
+.card-div {
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+}

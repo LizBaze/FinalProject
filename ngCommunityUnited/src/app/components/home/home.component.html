@@ -1,4 +1,3 @@
-
 <!--
 
 <div id="carouselExampleIndicators" class="carousel slide">
@@ -28,24 +27,15 @@
   </button>
 </div> -->
 
-<ngb-carousel id="carousel" class="carousel"
-	*ngIf="images"
+<ngb-carousel id="carousel" class="carousel" *ngIf="images">
+  <div class="indicator">
+    [showNavigationIndicators]="showNavigationIndicators"
+  </div>
 
-
->
-<div class="indicator">
-[showNavigationIndicators]="showNavigationIndicators"
-</div>
-
-	<ng-template class="slide mx-auto" ngbSlide *ngFor="let image of images">
-		<div class="picsum-img-wrapper">
-			<img  id="photo" [src]="image" alt="Random slide" />
-		</div>
-		<div  class="carousel-caption">
-
-		</div>
-	</ng-template>
+  <ng-template class="slide mx-auto" ngbSlide *ngFor="let image of images">
+    <div class="picsum-img-wrapper">
+      <img id="photo" [src]="image" alt="Random slide" />
+    </div>
+    <div class="carousel-caption"></div>
+  </ng-template>
 </ngb-carousel>
-
-
-

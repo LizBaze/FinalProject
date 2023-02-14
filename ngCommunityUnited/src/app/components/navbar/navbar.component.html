@@ -24,7 +24,7 @@
 		</ng-template>
 	</li>
 
-  <li *ngIf="!loggedIn()" [ngbNavItem]="2">
+  <li *ngIf="!loggedIn()" [ngbNavItem]="4">
 		<a ngbNavLink [routerLink]="['/login']"><b>Login</b></a>
 		<ng-template ngbNavContent>
 			<p>
@@ -33,7 +33,7 @@
 		</ng-template>
 	</li>
 
-	<li ngbDropdown class="nav-item">
+	<!-- <li ngbDropdown class="nav-item">
 		<a href (click)="false" class="nav-link" ngbDropdownToggle>More</a>
 		<div ngbDropdownMenu>
 			<button *ngIf="loggedIn()" ngbDropdownItem [routerLink]="['/account']">Account</button>
@@ -42,14 +42,32 @@
 			<div class="dropdown-divider"></div>
 			<button ngbDropdownItem>Separated link</button>
 		</div>
-	</li>
-	<li ngbNavItem class="ms-auto">
-      <div *ngIf="loggedIn()">
-        <app-logout></app-logout>
-        </div>
+	</li> -->
 
-
+  <li *ngIf="loggedIn()" [ngbNavItem]="5">
+		<a ngbNavLink [routerLink]="['/account']"><b>Account</b></a>
+		<ng-template ngbNavContent>
+		</ng-template>
 	</li>
+
+  <li *ngIf="!loggedIn()" [ngbNavItem]="6">
+		<a ngbNavLink [routerLink]="['/register']"><b>Register</b></a>
+		<ng-template ngbNavContent>
+			<p>
+
+			</p>
+		</ng-template>
+	</li>
+
+  <li *ngIf="loggedIn()" [ngbNavItem]="7">
+		<a ngbNavLink (click)="logout()"><b>Logout</b></a>
+		<ng-template ngbNavContent>
+			<p>
+
+			</p>
+		</ng-template>
+	</li>
+
 </ul>
 
 <div [ngbNavOutlet]="nav" class="mt-2"></div>
