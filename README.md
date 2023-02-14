@@ -42,7 +42,10 @@ Another JPA mapping that our team was no so familiar with was the Compossite Pri
  ![image](https://user-images.githubusercontent.com/113270980/218830133-7cd2c2fd-23b5-4439-8c9e-ae10ce826630.png)
  <img width="109" alt="Screen Shot 2023-02-08 at 4 19 00 PM" src="https://user-images.githubusercontent.com/113270980/218830399-d5232b36-b0d8-44d9-9214-61159c922bb3.png">
  ![image](https://user-images.githubusercontent.com/113270980/218830540-8dd8c83d-048c-458a-92b7-a852c8286054.png)
-
+ 
+ >Example: 
+ As a team, we decided that a user will be able to participant in a volunteer event. So our participant entity table needed both a user_id and a event_id. We learned that we needed to as a @MapsId to both user_id and event_id, and each entity table was ampped as a many to many. 
+Overall, it was good practice for each of us to understand why the composite key were needed in this instance and how to implement it with other composite keys in our schema.
 
 
 
