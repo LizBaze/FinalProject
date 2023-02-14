@@ -31,8 +31,8 @@
 |-----------|----------------------|--------------|---------------|
 | GET       | `/api/organizations`    |               | Retrieves a collection of all exsisting organizations
 | GET       | `/api/organizations/1/users/1` |    | Retrieves a boolean to check whether a user is an admin for that organization|
-| PUT       | `/api/user/1` |  Request's a new version of the user | Updated user's information to the database |
-| DELETE    | `/api/user/1` |              | Deleted the user from the database|
+| GET       | `/api/organizations/1` |  Retreives an organization by id |
+| POST    | `/api/organizations` | Request of a new organization while user is logged in            | Generates a new organization into the database|
 
 
 
