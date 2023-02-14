@@ -1,3 +1,8 @@
 #eventPadding {
   padding: 10px;
 }
+
+.list-group-item {
+  background-color: #225c8f;
+  /* color: black; */
+}

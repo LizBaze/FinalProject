@@ -3,7 +3,7 @@
   <h1 class="display-4">you want to see in the world."</h1>
   <em class="lead">- Mahatma Gandhi</em>
   <p class="lead">
-    <a class="btn btn-primary btn-lg" role="button" (click)="newOrg()">Create an Organiztion</a>
+    <a class="btn btn-secondary btn-lg" role="button" (click)="newOrg()">Create an Organiztion</a>
   </p>
 </div>
 
@@ -25,10 +25,10 @@
   <div class="card-body">
     <h5 class="card-title">{{selectedOrganization.name}}</h5>
     <p class="card-text">{{selectedOrganization.description}}</p>
-    <button *ngIf="checkAdmin()" class="btn btn-primary" (click)="editOrg(selectedOrganization)">Edit Organization</button>
-    <button *ngIf="!checkMember() && user" class="btn btn-primary" (click)="addedMemberToOrg(selectedOrganization.id)">Join Organiztion</button>
-    <button *ngIf="checkMember() && user" class="btn btn-primary" (click)="removedFromOrg(selectedOrganization.id)">Leave Organiztion</button>
-    <button class="btn btn-primary" (click)="selectedOrganization = null">Back</button>
+    <button *ngIf="checkAdmin()" class="btn btn-info" (click)="editOrg(selectedOrganization)">Edit Organization</button>
+    <button *ngIf="!checkMember() && user" class="btn btn-info" (click)="addedMemberToOrg(selectedOrganization.id)">Join Organiztion</button>
+    <button *ngIf="checkMember() && user" class="btn btn-info" (click)="removedFromOrg(selectedOrganization.id)">Leave Organiztion</button>
+    <button class="btn btn-info" (click)="selectedOrganization = null">Back</button>
   </div>
 </div>
 
@@ -54,12 +54,12 @@
       required
     />
     <button
-      class="btn btn-primary"
+      class="btn btn-info"
       (click)="updateOrg(editOrganization, editOrganization.id)"
     >
       Submit
     </button>
-    <button class="btn btn-primary" (click)="editOrganization = null">Cancel</button>
+    <button class="btn btn-info" (click)="editOrganization = null">Cancel</button>
   </div>
 </form>
 
@@ -99,16 +99,16 @@
 
   <br />
   <div>
-    <button class="btn btn-primary" (click)="createOrg(newOrganization)">
+    <button class="btn btn-info" (click)="createOrg(newOrganization)">
       Create New Organization
     </button>
-    <button class="btn btn-primary" (click)="newOrganization = null">Cancel</button>
+    <button class="btn btn-info" (click)="newOrganization = null">Cancel</button>
   </div>
 </form>
 
 
 <div *ngIf="selectedOrganization">
-  <button class="btn btn-primary" (click)="newEvent()" *ngIf="checkAdmin()">Add New Event</button>
+  <button class="btn btn-info" (click)="newEvent()" *ngIf="checkAdmin()">Add New Event</button>
   <form *ngIf="newVolunteerevent">
     <label class="form-label">Name</label>
     <input class="form-control" type="text" name="name" [(ngModel)]="newVolunteerevent.name" ><br>
@@ -127,7 +127,7 @@
     <label class="form-label">Zip Code</label>
     <input class="form-control" type="text" name="zip" [(ngModel)]="newVolunteerevent.address.zip" ><br>
     <div class="d-grid gap-2">
-      <button type="button" class="btn btn-primary" (click)="createVolunteerevent(newVolunteerevent)">Create</button>
+      <button type="button" class="btn btn-info" (click)="createVolunteerevent(newVolunteerevent)">Create</button>
       <!-- <button type="button" class="btn btn-primary" (click)="changeAddLocationSelected()">Cancel</button> -->
     </div>
   </form>

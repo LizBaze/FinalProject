@@ -1,0 +1,26 @@
+#logo {
+  width: 400px;
+}
+
+.center {
+  text-align: center;
+}
+
+.nav-link {
+  color: #FFBF59 !important;
+}
+
+.active {
+  background-color: #FFBF59 !important;
+  color: #03989e !important;
+}
+
+.show {
+  background-color: #FFBF59 !important;
+  color: #03989e !important;
+}
+
+.nav-tabs {
+  --bs-nav-tabs-link-active-bg: #03989e;
+  color: #FFBF59 !important;
+}

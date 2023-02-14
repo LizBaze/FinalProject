@@ -11,3 +11,7 @@
   color: white;
   text-shadow: 0px 2px 4px black;
 }
+
+.list-group-item {
+  background-color: #225c8f;
+}

@@ -1,7 +1,7 @@
 
 
 <div *ngIf="selected" >
-  <button class="btn btn-primary" (click)="displayAllEvents()">Back</button>
+  <button class="btn btn-info" (click)="displayAllEvents()">Back</button>
   <!-- <h1>{{selected.id}}</h1>
   <h1>{{selected.name}}</h1>
   <h1>{{selected.description}}</h1>
@@ -46,10 +46,10 @@
     <p class="card-text">{{selected.address.street}}</p>
     <p class="card-text">{{selected.address.city}}, {{selected.address.state}}</p>
     <p class="card-text">{{selected.address.zip}}</p>
-    <button *ngIf="checkAdmin(selected)" class="btn btn-primary" (click)="setEditEvent()">Edit Event</button>
-    <button *ngIf="checkAdmin(selected)" class="btn btn-primary" (click)="setEditEvent()">Delete Event</button>
-    <button *ngIf="!checkParticipant()" class="btn btn-primary" (click)="addParticipant(selected.id)">Join Event</button>
-    <button *ngIf="checkParticipant()" class="btn btn-primary" (click)="removeParticipant(selected.id)">Leave Event</button>
+    <button *ngIf="checkAdmin(selected)" class="btn btn-info" (click)="setEditEvent()">Edit Event</button>
+    <button *ngIf="checkAdmin(selected)" class="btn btn-info" (click)="setEditEvent()">Delete Event</button>
+    <button *ngIf="!checkParticipant()" class="btn btn-info" (click)="addParticipant(selected.id)">Join Event</button>
+    <button *ngIf="checkParticipant()" class="btn btn-info" (click)="removeParticipant(selected.id)">Leave Event</button>
   </div>
   <div *ngIf="checkParticipant()">
     <!-- <li *ngFor="let message of messages">{{message.description}}<button *ngIf="checkMessageOwner(message)"   (click)="deleteMessage(message.id)">Delete</button> -->
@@ -90,8 +90,8 @@
     <label class="form-label">Zip Code</label>
     <input class="form-control" type="text" name="zip" [(ngModel)]="editVolunteerevent.address.zip" ><br>
     <div class="d-grid gap-2">
-      <button type="button" class="btn btn-primary" (click)="updateEvent(editVolunteerevent)">Save</button>
-      <button type="button" class="btn btn-primary" (click)="editVolunteerevent = null">Cancel</button>
+      <button type="button" class="btn btn-info" (click)="updateEvent(editVolunteerevent)">Save</button>
+      <button type="button" class="btn btn-info" (click)="editVolunteerevent = null">Cancel</button>
     </div>
 
 </form>
