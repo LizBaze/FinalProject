@@ -1,5 +1,6 @@
 import { Organization } from 'src/app/models/organization';
 import { Address } from './address';
+import { EventImg } from './event-img';
 import { Participant } from './participant';
 
 export class Volunteerevent {
@@ -12,6 +13,7 @@ export class Volunteerevent {
   organization: Organization;
   address: Address;
   participants: Participant[];
+  eventImages: EventImg[];
 
   constructor(
     id: number = 0,
@@ -22,7 +24,8 @@ export class Volunteerevent {
     endDate: string = '',
     organization: Organization = new Organization(),
     address: Address = new Address(),
-    participants: Participant[] = []
+    participants: Participant[] = [],
+    eventImages: EventImg[] = []
   ) {
     this.id = id;
     this.name = name;
@@ -33,5 +36,6 @@ export class Volunteerevent {
     this.organization = organization;
     this.address = address;
     this.participants = participants;
+    this.eventImages = eventImages;
   }
 }

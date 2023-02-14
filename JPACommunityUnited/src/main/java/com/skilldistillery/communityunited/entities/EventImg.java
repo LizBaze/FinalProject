@@ -11,6 +11,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name="event_img")
 public class EventImg {
@@ -23,6 +25,7 @@ public class EventImg {
 	private String caption;
 	@ManyToOne
 	@JoinColumn(name="volunteer_event_id")
+	@JsonIgnore
 	private VolunteerEvent volunteerEvent;
 	
 	public EventImg() {

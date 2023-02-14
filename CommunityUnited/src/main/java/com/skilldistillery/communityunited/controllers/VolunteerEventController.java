@@ -42,6 +42,7 @@ public class VolunteerEventController {
 	
 	@PostMapping("organizations/{oid}/volunteerevents")
 	public VolunteerEvent createEvent(@RequestBody VolunteerEvent event, @PathVariable int oid, HttpServletResponse res) {
+		System.out.println(event);
 		event = eventService.create(event, oid);
 		if(event != null) {
 			res.setStatus(201);

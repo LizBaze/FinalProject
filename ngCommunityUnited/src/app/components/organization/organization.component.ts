@@ -6,6 +6,7 @@ import { AuthService } from 'src/app/services/auth.service';
 import { User } from 'src/app/models/user';
 import { VolunteereventService } from 'src/app/services/volunteerevent.service';
 import { Volunteerevent } from 'src/app/models/volunteerevent';
+import { EventImg } from 'src/app/models/event-img';
 
 @Component({
   selector: 'app-organization',
@@ -23,15 +24,14 @@ export class OrganizationComponent implements OnInit {
 
   newVolunteerevent: Volunteerevent | null = null;
 
+  newEventImage: EventImg | null = null;
+
   user: User | null = null;
 
   showId: Organization | null = null;
 
-
-
   ngOnInit() {
     this.index();
-    console.log(this.user);
 
   }
 
@@ -39,9 +39,9 @@ export class OrganizationComponent implements OnInit {
     this.orgService.index().subscribe({
       next: (orgs: Organization[]) => {
         this.allOrgs = orgs;
-        console.log(orgs);
+
         this.getUser();
-        console.log(this.user);
+
       },
       error: (err: any) => {
         console.error(err);
@@ -65,15 +65,14 @@ export class OrganizationComponent implements OnInit {
   }
 
   getUser() {
-    if (this.checkLogIn() ) {
+    if (this.checkLogIn()) {
       this.auth.getLoggedInUser().subscribe({
         next: (loggedInUser) => {
-          console.log(loggedInUser);
+
           this.user = loggedInUser;
-          console.log(this.user);
+
         },
         error: () => {
-
           console.error('not logged In');
         },
       });
@@ -82,12 +81,12 @@ export class OrganizationComponent implements OnInit {
 
   checkAdmin() {
     let found = undefined;
-    console.log(this.user);
+
     if (this.user && this.selectedOrganization) {
       for (let member of this.selectedOrganization.members) {
-        console.log(this.selectedOrganization.members)
+
         // console.log(this.user);
-        console.log(member);
+
         if (member.user.id === this.user.id && member.admin === true) {
           found = true;
           break;
@@ -108,7 +107,7 @@ export class OrganizationComponent implements OnInit {
   createOrg(org: Organization) {
     this.orgService.createOrg(org).subscribe({
       next: (createdOrg) => {
-        console.log(createdOrg);
+
         this.newOrganization = null;
         this.index();
       },
@@ -135,21 +134,20 @@ export class OrganizationComponent implements OnInit {
     });
   }
 
-  addedMemberToOrg(id: number){
+  addedMemberToOrg(id: number) {
     this.orgService.addedMemberToOrg(id).subscribe({
-      next: (addedMember)=>{
+      next: (addedMember) => {
         this.showById(id);
         this.index();
-        console.log(addedMember);
-      },
-      error: (err)=> {
-        console.error(err);
-      }
-    })
 
+      },
+      error: (err) => {
+        console.error(err);
+      },
+    });
   }
 
-  checkMember(){
+  checkMember() {
     let found = false;
     if (this.user && this.selectedOrganization) {
       for (let member of this.selectedOrganization.members) {
@@ -162,49 +160,59 @@ export class OrganizationComponent implements OnInit {
     return found;
   }
 
-  showById(id: number){
-   this.orgService.showById(id).subscribe({
-    next: (org: Organization)=>{
-      this.showId = org;
-      this.selectedOrganization = this.showId;
-    },
-    error: (err)=>{
-      console.error(err);
-      return null;
-    }
-   })
-  }
-
-  createVolunteerevent(volunteerevent : Volunteerevent) {
-    if (this.newVolunteerevent) {
-    this.orgService.createVolunteerevent(this.newVolunteerevent, this.selectedOrganization!.id).subscribe({
-      next: (volunteerevent) => {
-        this.newVolunteerevent = new Volunteerevent();
+  showById(id: number) {
+    this.orgService.showById(id).subscribe({
+      next: (org: Organization) => {
+        this.showId = org;
+        this.selectedOrganization = this.showId;
       },
       error: (err) => {
-        console.log('VolunteereventComponent.createVolunteerevent(): error creating event');
-        console.log(err);
-      }
+        console.error(err);
+        return null;
+      },
     });
   }
+
+  createVolunteerevent(volunteerevent: Volunteerevent) {
+    if (this.newEventImage && this.newVolunteerevent) {
+      this.newVolunteerevent.eventImages.push(this.newEventImage);
+      // this.newEventImage.volunteerEvent = this.newVolunteerevent;
+    }
+    if (this.newVolunteerevent) {
+      this.orgService
+        .createVolunteerevent(
+          this.newVolunteerevent,
+          this.selectedOrganization!.id
+        )
+        .subscribe({
+          next: (volunteerevent) => {
+            this.newVolunteerevent = new Volunteerevent();
+          },
+          error: (err) => {
+            console.log(
+              'VolunteereventComponent.createVolunteerevent(): error creating event'
+            );
+            console.log(err);
+          },
+        });
+    }
     this.index();
-    }
+  }
 
-    newEvent(){
-      this.newVolunteerevent = new Volunteerevent();
-    }
+  newEvent() {
+    this.newVolunteerevent = new Volunteerevent();
+    this.newEventImage = new EventImg();
+  }
 
-    removedFromOrg(id: number){
-      this.orgService.removeUserFromOrg(id).subscribe({
-        next: () => {
-          this.showById(id);
-          this.index();
-        },
-        error: (err) => {
-          console.log(err);
-        }
-      })
-    }
-
-
+  removedFromOrg(id: number) {
+    this.orgService.removeUserFromOrg(id).subscribe({
+      next: () => {
+        this.showById(id);
+        this.index();
+      },
+      error: (err) => {
+        console.log(err);
+      },
+    });
+  }
 }
