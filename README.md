@@ -31,12 +31,12 @@ When registering an account, the user will have their own account they can view 
 
 
 # Lesson Learned 
-One of the lessons that the team learned early on was json recursion. Learning to utilize @JsonIgnoreProperties appropriately in our entities was very important as we had a lot of recursion happening. @JsonIgnoreProperties is a class-level annotation that marks a property or a list of properties that Json will ignore when read during deserialization. 
+One of the lessons that the team learned early on was json recursion. Learning to utilize @JsonIgnoreProperties appropriately in our entities was very important as we had a lot of recursion happening. @JsonIgnoreProperties is a class-level annotation that marks a property or a list of properties that Json will ignore when read during deserialization.  
 
  >Example: 
 We placed the @JsonIgnoreProperties in User, VolunteerEvent, Participant, Organization and Member Entities. 
 
-Another JPA mapping that our team was no so familiar with was the Compossite Primary Key Mapping. We leanred that when we have an entity table that only consists of having multiple primary keys instead of just one primary key, we would have to join the tables differently. 
+Another JPA mapping that our team was not so familiar with was the Composite Primary Key Mapping. We learned that when we have an entity table that only consists of having multiple primary keys instead of just one primary key, we would have to join the tables differently.
 
 ### Composite Primary Key Example
  ![image](https://user-images.githubusercontent.com/113270980/218830133-7cd2c2fd-23b5-4439-8c9e-ae10ce826630.png)
@@ -44,8 +44,9 @@ Another JPA mapping that our team was no so familiar with was the Compossite Pri
  ![image](https://user-images.githubusercontent.com/113270980/218830540-8dd8c83d-048c-458a-92b7-a852c8286054.png)
  
  >Example: 
- As a team, we decided that a user will be able to participant in a volunteer event. So our participant entity table needed both a user_id and a event_id. We learned that we needed to as a @MapsId to both user_id and event_id, and each entity table was ampped as a many to many. 
-Overall, it was good practice for each of us to understand why the composite key were needed in this instance and how to implement it with other composite keys in our schema.
+ As a team, we decided that a user will be able to participate in a volunteer event. So our participant entity table needed both a user_id and an event_id. We learned that we needed to add a @MapsId to both user_id and event_id, and each entity table was mapped as a many to many. 
+Overall, it was good practice for each of us to understand why the composite keys were needed in this instance and how to implement it with other composite keys in our schema.
+
 
 
 
